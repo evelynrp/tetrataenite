@@ -29,7 +29,6 @@ modules:
   - type: dnf
     repos:
       copr:
-        - lihaohong/yazi
         - secureblue/packages
       files:
         - https://repository.mullvad.net/rpm/stable/mullvad.repo
@@ -48,7 +47,6 @@ modules:
         - mullvad-vpn
         - trivalent
         - vim
-        - yazi
     remove:
       packages:
         - epiphany-runtime
