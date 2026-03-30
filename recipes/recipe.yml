@@ -21,11 +21,6 @@ modules:
       NAME: tetrataenite
       PRETTY_NAME: tetrataenite
 
-  - type: files
-    files:
-      - source: system
-        destination: /
-
   - type: dnf
     repos:
       copr:
@@ -34,6 +29,8 @@ modules:
         - https://repository.mullvad.net/rpm/stable/mullvad.repo
         - https://repo.secureblue.dev/secureblue.repo
         - https://github.com/terrapkg/subatomic-repos/raw/main/terra.repo
+        - vscode.repo
+        - google-chrome.repo
     install:
       install-weak-deps: false
       packages:
@@ -42,6 +39,7 @@ modules:
         - code
         - distrobox
         - gnome-tweaks
+        - google-chrome-stable
         - tetrataenite-logos-0.0.1-1.fc43.x86_64.rpm
         - ms-core-fonts
         - mullvad-vpn
@@ -62,6 +60,16 @@ modules:
         - gnome-software
         - gnome-tour
         - totem-video-thumbnailer
+
+  - type: files
+    files:
+      - source: system
+        destination: /
+
+  - type: script
+    snippets:
+      - "chmod +x /usr/bin/google-chrome"
+      - "chmod +x /usr/bin/google-chrome-stable"
 
   - type: default-flatpaks
     configurations:
