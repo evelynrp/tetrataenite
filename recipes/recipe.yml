@@ -6,7 +6,7 @@ name: tetrataenite
 description: This is my personal OS image.
 
 # the base image to build on top of (FROM) and the version tag to use
-base-image: ghcr.io/blue-build/base-images/fedora-cosmic-nvidia-open
+base-image: ghcr.io/blue-build/base-images/fedora-silverblue-nvidia-open
 image-version: latest # latest is also supported if you want new updates ASAP
 platforms:
   - linux/amd64
@@ -41,19 +41,17 @@ modules:
         - adw-gtk3-theme
         - bazaar
         - code
-        - cosmic-player
         - distrobox
+        - gnome-tweaks
         - tetrataenite-logos-0.0.1-1.fc43.x86_64.rpm
         - ms-core-fonts
         - mullvad-vpn
-        - NetworkManager-openvpn
-        - NetworkManager-tui
         - trivalent
         - vim
         - yazi
     remove:
       packages:
-        - cosmic-store
+        - epiphany-runtime
         - fedora-chromium-config
         - fedora-chromium-config-gnome
         - fedora-flathub-remote
@@ -61,6 +59,11 @@ modules:
         - fedora-workstation-repositories
         - firefox
         - firefox-langpacks
+        - gnome-remote-desktop
+        - gnome-shell-extension-background-logo
+        - gnome-software
+        - gnome-tour
+        - totem-video-thumbnailer
 
   - type: default-flatpaks
     configurations:
@@ -70,6 +73,11 @@ modules:
           title: Flathub (system)
         install:
           - com.github.tchx84.Flatseal
+
+  - type: gnome-extensions
+    install:
+      - AppIndicator and KStatusNotifierItem Support
+      - 307 # Dash-to-Dock
   
   - type: fonts
     fonts:
