@@ -12,13 +12,14 @@ One can only deal with finding trojans on work computers so many times. I wanted
 
 ## What's included?
 
-- Automatic updates, `brew`, `blujust`, and other improvements from BlueBuild
-- nvidia-open, because my personal laptop is a Legion
-- Bazaar and Trivalent from secureblue
-- Google Chrome with policies and flags from [RKNF404](https://github.com/RKNF404/chromium-hardening-guide)
-- [Mullvad VPN](https://mullvad.net) baked in because there is no flatpak
-- vscode baked in because the flatpak doesn't work well
-- Very few applications installed out of the box. You will need to install your own text editor, image viewer, video player, etc etc.
+- Automatic updates, `brew`, `blujust`, and other improvements included in BlueBuild's base images.
+- nvidia-open, because my personal laptop is a Legion, also provided by BlueBuild's nvidia-open image.
+- Bazaar (rpm) and Trivalent from secureblue.
+- Google Chrome with policies and flags from [RKNF404](https://github.com/RKNF404/chromium-hardening-guide).
+  - I might later remove one or the other browser. Both were included because I prefer Trivalent but it might cause usability issues for coworkers.
+- [Mullvad VPN](https://mullvad.net) baked in because there is no flatpak.
+- vscode baked in because the flatpak doesn't work well. Might later incorporate [uBlue's homebrew tap](https://github.com/ublue-os/homebrew-tap) instead.
+- Very few applications installed out of the box; you will need to install your own text editor, image viewer, video player, etc, via flatpak/Bazaar
 
 ## Should I use this?
 
