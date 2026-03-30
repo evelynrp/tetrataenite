@@ -1,43 +1,25 @@
+![tetrataenite logo](tetrataenite.png)
+
 # tetrataenite &nbsp; [![bluebuild build badge](https://github.com/evelynrp/tetrataenite/actions/workflows/build.yml/badge.svg)](https://github.com/evelynrp/tetrataenite/actions/workflows/build.yml)
 
-See the [BlueBuild docs](https://blue-build.org/how-to/setup/) for quick setup instructions for setting up your own repository based on this template.
+## What is this?
 
-After setup, it is recommended you update this README to describe your custom image.
+tetrataenite is a desktop Linux operating system. It is built using BlueBuild and shipped as a set of OCI bootable containers, using BlueBuild's base images as a starting point.
 
-## Installation
+## Why does this exist?
 
-> [!WARNING]  
-> [This is an experimental feature](https://www.fedoraproject.org/wiki/Changes/OstreeNativeContainerStable), try at your own discretion.
+One can only deal with finding trojans on work computers so many times. I wanted something that was relatively maintenance-free and relatively "grandma-proof" that was still reasonably secure. [Project Bluefin](https://projectbluefin.io) was considered, but ruled out because of their insistence on flatpak browsers, which I consider to be too big a security compromise. [secureblue](https://secureblue.dev) was considered, but usability was an issue. tetrataenite is sort of like a middle ground between the two.
 
-To rebase an existing atomic Fedora installation to the latest build:
+## What's included?
 
-- First rebase to the unsigned image, to get the proper signing keys and policies installed:
-  ```
-  rpm-ostree rebase ostree-unverified-registry:ghcr.io/evelynrp/tetrataenite:latest
-  ```
-- Reboot to complete the rebase:
-  ```
-  systemctl reboot
-  ```
-- Then rebase to the signed image, like so:
-  ```
-  rpm-ostree rebase ostree-image-signed:docker://ghcr.io/evelynrp/tetrataenite:latest
-  ```
-- Reboot again to complete the installation
-  ```
-  systemctl reboot
-  ```
+- Automatic updates, `brew`, `blujust`, and other improvements from BlueBuild
+- nvidia-open, because my personal laptop is a Legion
+- Bazaar and Trivalent from secureblue
+- Google Chrome with policies and flags from [RKNF404](https://github.com/RKNF404/chromium-hardening-guide)
+- [Mullvad VPN](https://mullvad.net) baked in because there is no flatpak
+- vscode baked in because the flatpak doesn't work well
+- Very few applications installed out of the box. You will need to install your own text editor, image viewer, video player, etc etc.
 
-The `latest` tag will automatically point to the latest build. That build will still always use the Fedora version specified in `recipe.yml`, so you won't get accidentally updated to the next major version.
+## Should I use this?
 
-## ISO
-
-If build on Fedora Atomic, you can generate an offline ISO with the instructions available [here](https://blue-build.org/how-to/generate-iso/#_top). These ISOs cannot unfortunately be distributed on GitHub for free due to large sizes, so for public projects something else has to be used for hosting.
-
-## Verification
-
-These images are signed with [Sigstore](https://www.sigstore.dev/)'s [cosign](https://github.com/sigstore/cosign). You can verify the signature by downloading the `cosign.pub` file from this repo and running the following command:
-
-```bash
-cosign verify --key cosign.pub ghcr.io/evelynrp/tetrataenite
-```
+Probably not. It's tailored exactly to my own taste, and is not really intended for anybody else's use. Go ahead if you want to, though.
