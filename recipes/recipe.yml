@@ -78,6 +78,10 @@ modules:
     install:
       - AppIndicator and KStatusNotifierItem Support
       - 307 # Dash-to-Dock
+
+  - type: gschema-overrides
+    include:
+      - zz1-tetrataenite.gschema.override
   
   - type: fonts
     fonts:

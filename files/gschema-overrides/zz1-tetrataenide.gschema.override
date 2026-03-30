@@ -7,13 +7,19 @@
 
 [org.gnome.shell]
 allow-extension-installation=false
-favorite-apps = ['trivalent.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Ptyxis.desktop', 'com.github.tchx84.Flatseal.desktop', 'io.github.kolunmi.Bazaar.desktop']
-enabled-extensions = []
+favorite-apps = ['trivalent.desktop', 'org.gnome.Ptyxis.desktop', 'org.gnome.Nautilus.desktop']
+enabled-extensions = ['dash-to-dock@micxgx.gmail.com', 'appindicatorsupport@rgcjonas.gmail.com']
 
 [org.gnome.desktop.interface]
-gtk-theme='adw-gtk3'
+clock-format='24h'
+color-scheme='prefer-dark'
+enable-hot-corners=false
 font-antialiasing="rgba"
+gtk-theme='adw-gtk3-dark'
 
-[org.gnome.desktop.background]
-picture-uri='file:///usr/share/backgrounds/secureblue/secureblue-blue.svg'
-picture-uri-dark='file:///usr/share/backgrounds/secureblue/secureblue-black.svg'
+[org/gnome/desktop/wm/keybindings]
+switch-windows=['<Alt>Tab']
+switch-windows-backward=['<Shift><Alt>Tab']
+
+[org/gnome/shell/extensions/dash-to-dock]
+disable-overview-on-startup=true
