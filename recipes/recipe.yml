@@ -66,11 +66,6 @@ modules:
       - source: system
         destination: /
 
-  - type: script
-    snippets:
-      - "chmod +x /usr/bin/google-chrome"
-      - "chmod +x /usr/bin/google-chrome-stable"
-
   - type: default-flatpaks
     configurations:
       - notify: false
