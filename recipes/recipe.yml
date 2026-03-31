@@ -96,6 +96,11 @@ modules:
     auto-update: true
     auto-upgrade: true
 
+  - type: systemd
+    system:
+      enabled:
+        - flatpak-system-update.timer
+
   - type: initramfs
 
   - type: signing # this sets up the proper policy & signing files for signed images to work fully
