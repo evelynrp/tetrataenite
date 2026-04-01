@@ -1,18 +1,4 @@
----
 # yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
-# image will be published to ghcr.io/<user>/<name>
-name: tetrataenite-gnome-nvidia-open
-# description will be included in the image's metadata
-description: A reasonably secure KISS desktop.
-
-# the base image to build on top of (FROM) and the version tag to use
-base-image: ghcr.io/blue-build/base-images/fedora-silverblue-nvidia-open
-image-version: latest # latest is also supported if you want new updates ASAP
-platforms:
-  - linux/amd64
-
-# module configuration, executed in order
-# you can include multiple instances of the same module
 modules:
   - type: os-release
     properties:
@@ -34,11 +20,9 @@ modules:
     install:
       install-weak-deps: false
       packages:
-        - adw-gtk3-theme
         - bazaar
         - code
         - distrobox
-        - gnome-tweaks
         - google-chrome-stable
         - tetrataenite-logos-0.0.2-1.fc43.x86_64.rpm
         - ms-core-fonts
@@ -47,7 +31,6 @@ modules:
         - vim
     remove:
       packages:
-        - epiphany-runtime
         - fedora-chromium-config
         - fedora-chromium-config-gnome
         - fedora-flathub-remote
@@ -55,11 +38,6 @@ modules:
         - fedora-workstation-repositories
         - firefox
         - firefox-langpacks
-        - gnome-remote-desktop
-        - gnome-shell-extension-background-logo
-        - gnome-software
-        - gnome-tour
-        - totem-video-thumbnailer
 
   - type: files
     files:
@@ -75,15 +53,6 @@ modules:
         install:
           - com.github.tchx84.Flatseal
 
-  - type: gnome-extensions
-    install:
-      - AppIndicator and KStatusNotifierItem Support
-      - 307 # Dash-to-Dock
-
-  - type: gschema-overrides
-    include:
-      - zz1-tetrataenite.gschema.override
-  
   - type: fonts
     fonts:
       nerd-fonts:

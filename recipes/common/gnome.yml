@@ -1,0 +1,26 @@
+---
+# yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
+modules:
+  - type: dnf
+    install:
+      install-weak-deps: false
+      packages:
+        - adw-gtk3-theme
+        - gnome-tweaks
+    remove:
+      packages:
+        - epiphany-runtime
+        - gnome-remote-desktop
+        - gnome-shell-extension-background-logo
+        - gnome-software
+        - gnome-tour
+        - totem-video-thumbnailer
+
+  - type: gnome-extensions
+    install:
+      - AppIndicator and KStatusNotifierItem Support
+      - 307 # Dash-to-Dock
+
+  - type: gschema-overrides
+    include:
+      - zz1-tetrataenite.gschema.override

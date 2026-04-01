@@ -1,0 +1,16 @@
+---
+# yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
+modules:
+  - type: dnf
+    install:
+      install-weak-deps: false
+      packages:
+        - krunner-bazaar
+    remove:
+      packages:
+        - krfb
+        - krfb-libs
+        - plasma-browser-integration
+        - plasma-discover
+        - plasma-discover-libs
+        - plasma-welcome-fedora

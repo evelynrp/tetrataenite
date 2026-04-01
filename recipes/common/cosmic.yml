@@ -1,0 +1,13 @@
+---
+# yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
+modules:
+  - type: dnf
+    install:
+      install-weak-deps: false
+      packages:
+        - cosmic-player
+        - NetworkManager-openvpn
+        - NetworkManager-tui
+    remove:
+      packages:
+        - cosmic-store
