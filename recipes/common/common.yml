@@ -13,7 +13,6 @@ modules:
         - secureblue/packages
       files:
         - https://repository.mullvad.net/rpm/stable/mullvad.repo
-        - https://repo.secureblue.dev/secureblue.repo
         - https://github.com/terrapkg/subatomic-repos/raw/main/terra.repo
         - vscode.repo
         - google-chrome.repo
@@ -27,7 +26,6 @@ modules:
         - tetrataenite-logos-0.0.2-1.fc43.x86_64.rpm
         - ms-core-fonts
         - mullvad-vpn
-        - trivalent
         - vim
     remove:
       packages:
