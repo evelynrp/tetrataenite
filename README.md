@@ -12,8 +12,8 @@ One can only deal with finding trojans on work computers so many times. I wanted
 
 ## What's included?
 
-- Automatic updates, `brew`, `blujust`, and other improvements included in BlueBuild's base images.
-- nvidia-open, because my personal laptop is a Legion, also provided by BlueBuild's nvidia-open image.
+- Automatic `bootc` updates, `brew`, `blujust`, and other improvements included in BlueBuild's base images.
+- nvidia-open on `nvidia` images, also provided by BlueBuild's nvidia-open image.
 - Bazaar (rpm) and Trivalent from secureblue.
 - Google Chrome with policies and flags from [RKNF404](https://github.com/RKNF404/chromium-hardening-guide).
   - I might later remove one or the other browser. Both were included because I prefer Trivalent but it might cause usability issues for coworkers.
@@ -24,3 +24,17 @@ One can only deal with finding trojans on work computers so many times. I wanted
 ## Should I use this?
 
 Probably not. It's tailored exactly to my own taste, and is not really intended for anybody else's use. Go ahead if you want to, though.
+
+## How to install?
+
+I don't feel like hosting ISOs so you'll have to build them yourself with BlueBuild cli, see the [instructions here](https://blue-build.org/how-to/generate-iso/). For example: `sudo bluebuild generate-iso --iso-name tetrataenite.iso image ghcr.io/evelynrp/tetrataenite-gnome-nvidia`
+
+Available images are:
+- `tetrataenite-cosmic`
+- `tetrataenite-cosmic-nvidia`
+- `tetrataenite-gnome`
+- `tetrataenite-gnome-nvidia`
+- `tetrataenite-plasma`
+- `tetrataenite-plasma-nvidia`
+
+A plain `tetrataenite` image exists, but has been deprecated. It is essentially an old version of the gnome-nvidia image leftover from before I decided to split the recipe up and make multiple images.
