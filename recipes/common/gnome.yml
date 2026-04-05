@@ -16,11 +16,6 @@ modules:
         - gnome-tour
         - totem-video-thumbnailer
 
-  - type: gnome-extensions
-    install:
-      - AppIndicator and KStatusNotifierItem Support
-      - 307 # Dash-to-Dock
-
   - type: gschema-overrides
     include:
       - zz1-tetrataenite.gschema.override
