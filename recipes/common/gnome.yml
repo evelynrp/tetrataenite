@@ -15,6 +15,12 @@ modules:
         - gnome-software
         - gnome-tour
         - totem-video-thumbnailer
+        
+  - type: gnome-extensions
+    install:
+      - Blur my Shell
+      - AppIndicator and KStatusNotifierItem Support
+      - 307
 
   - type: gschema-overrides
     include:
