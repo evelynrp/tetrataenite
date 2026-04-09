@@ -1,0 +1,13 @@
+#!/bin/bash
+FLAGS_FILE="/usr/share/chrome-flags.conf"
+
+flags=()
+if [[ -f "$FLAGS_FILE" ]]; then
+    while IFS= read -r line || [[ -n "$line" ]]; do
+        # skip empty lines and comments
+        [[ -z "$line" || "$line" == \#* ]] && continue
+        flags+=("$line")
+    done < "$FLAGS_FILE"
+fi
+
+exec /usr/bin/google-chrome-stable "${flags[@]}" "$@"
