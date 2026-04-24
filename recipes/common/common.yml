@@ -8,6 +8,17 @@ modules:
       PRETTY_NAME: tetrataenite
 
   - type: dnf
+    remove:
+      packages:
+        - fedora-chromium-config
+        - fedora-chromium-config-gnome
+        - fedora-flathub-remote
+        - fedora-third-party
+        - fedora-workstation-repositories
+        - firefox
+        - firefox-langpacks
+
+  - type: dnf
     repos:
       copr:
         - secureblue/packages
@@ -22,15 +33,6 @@ modules:
         - tetrataenite-logos-0.0.2-1.fc43.x86_64.rpm
         - neovim
         - vim
-    remove:
-      packages:
-        - fedora-chromium-config
-        - fedora-chromium-config-gnome
-        - fedora-flathub-remote
-        - fedora-third-party
-        - fedora-workstation-repositories
-        - firefox
-        - firefox-langpacks
 
   - type: files
     files:
