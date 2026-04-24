@@ -27,11 +27,8 @@ jobs:
       matrix:
         recipe:
           # !! Add your recipes here
-          - recipe-cosmic-nvidia.yml
           - recipe-cosmic.yml
-          - recipe-gnome-nvidia.yml
           - recipe-gnome.yml
-          - recipe-plasma-nvidia.yml
           - recipe-plasma.yml
     steps:
       # the build is fully handled by the reusable github action
