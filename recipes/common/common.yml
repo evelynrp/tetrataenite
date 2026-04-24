@@ -17,11 +17,9 @@ modules:
       install-weak-deps: false
       packages:
         - bazaar
-        - code
         - distrobox
         - google-chrome-stable
         - tetrataenite-logos-0.0.2-1.fc43.x86_64.rpm
-        - mullvad-vpn
         - neovim
         - vim
     remove:
