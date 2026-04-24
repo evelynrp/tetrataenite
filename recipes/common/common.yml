@@ -12,9 +12,6 @@ modules:
       copr:
         - secureblue/packages
       files:
-        - https://repository.mullvad.net/rpm/stable/mullvad.repo
-        - https://github.com/terrapkg/subatomic-repos/raw/main/terra.repo
-        - vscode.repo
         - google-chrome.repo
     install:
       install-weak-deps: false
@@ -24,8 +21,8 @@ modules:
         - distrobox
         - google-chrome-stable
         - tetrataenite-logos-0.0.2-1.fc43.x86_64.rpm
-        - ms-core-fonts
         - mullvad-vpn
+        - neovim
         - vim
     remove:
       packages:
@@ -67,6 +64,7 @@ modules:
     system:
       enabled:
         - flatpak-system-update.timer
+        - bootc-fetch-apply-updates.timer
 
   - type: script
     scripts:
