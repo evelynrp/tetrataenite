@@ -27,6 +27,7 @@ modules:
     install:
       install-weak-deps: false
       packages:
+        - android-udev-rules
         - bazaar
         - distrobox
         - google-chrome-stable
