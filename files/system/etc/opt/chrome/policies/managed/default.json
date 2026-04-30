@@ -4,13 +4,9 @@
         "*"
     ],
     "ClearBrowsingDataOnExitList": [
-        "browsing_history",
         "download_history",
-        "cookies_and_other_site_data",
         "cached_images_and_files",
-        "password_signin",
         "autofill",
-        "site_settings",
         "hosted_app_data"
     ],
     "AIModeSettings": 1,
@@ -38,7 +34,6 @@
     "DefaultSensorsSetting": 2,
     "DefaultBrowserSettingEnabled": false,
     "ExtensionDeveloperModeSettings": 1,
-    "HardwareAccelerationModeEnabled": false,
     "HistoryClustersVisible": false,
     "MediaRecommendationsEnabled": false,
     "EnableMediaRouter": false,
@@ -64,11 +59,11 @@
     "UserFeedbackAllowed": false,
     "WebRtcIPHandling": "disable_non_proxied_udp",
     "WebRtcTextLogCollectionAllowed": false,
-    "DnsOverHttpsMode": "secure",
-    "DnsOverHttpsTemplates": "https://freedns.controld.com/p2",
+    "DnsOverHttpsMode": "automatic",
     "AudioSandboxEnabled": true,
     "PromptForDownloadLocation": true,
     "ExtensionInstallAllowlist": [
+        "nngceckbapebfimnlniiiahkandclblb",
         "ddkjiahejlhfcafbddmgiahcphecmpfh"
     ],
     "ExtensionInstallBlocklist": [
