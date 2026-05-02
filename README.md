@@ -33,7 +33,9 @@ systemctl reboot
 
 Replace `tetrataenite-gnome` with your chosen image from this list:
 - tetrataenite-gnome
+- tetrataenite-gnome-nvidia-open
 - tetrataenite-plasma
+- tetrataenite-plasma-nvidia-open
 
 ## Design philosophy and decisions
 
@@ -45,6 +47,6 @@ Default app stores such as Gnome Software were removed and replaced with secureb
 
 Nvidia images use the nvidia-open kernel modules and are intended for use only on Turing cards and later. Please note that nvidia-container-toolkit was dropped, so you will be unable to pass the GPU into docker/podman containers. Everything else, including CUDA, is still included.
 
-VS Code and some fonts were previously included, but have been removed from the image to simplify the codebase and reduce dependencies on external repositories. It is now recommended to install these via brew. You may want to tap [uBlue's homebrew tap](https://github.com/ublue-os/homebrew-tap).
+VS Code and some fonts were previously included, but have been removed from the image to simplify the codebase and reduce dependencies on external repositories. It is now recommended to install these via brew. You may want to tap [uBlue's homebrew tap](https://github.com/ublue-os/homebrew-tap). Justfiles are included to make it easier to install Microsoft fonts and the Universal Blue homebrew tap.
 
 Because this image is intended to be a turnkey solution for nontechnical users, only Gnome and Plasma images are currently available.
