@@ -32,10 +32,8 @@ systemctl reboot
 ```
 
 Replace `tetrataenite-gnome` with your chosen image from this list:
-- tetrataenite-cosmic
 - tetrataenite-gnome
 - tetrataenite-plasma
-- tetrataenite-sway
 
 ## Design philosophy and decisions
 
@@ -47,6 +45,6 @@ Default app stores such as Gnome Software were removed and replaced with secureb
 
 VS Code and some fonts were previously included, but have been removed from the image to simplify the codebase and reduce dependencies on external repositories. It is now recommended to install these via brew. You may want to tap [uBlue's homebrew tap](https://github.com/ublue-os/homebrew-tap).
 
-Nvidia images have also been deprecated to simplify the codebase and reduce build load. Tetrataenite is not intended for gaming, video editing, local AI, or other GPU-intensive tasks.
+Nvidia images have also been deprecated to simplify the codebase and reduce build load. Tetrataenite is not intended for gaming, video editing, local AI, or other GPU-intensive tasks. This may change in the near future.
 
-> Note: COSMIC is still in Beta, and tetrataenite-cosmic should be considered experimental.
+Because this image is intended to be a turnkey solution for nontechnical users, only Gnome and Plasma images are currently available.
