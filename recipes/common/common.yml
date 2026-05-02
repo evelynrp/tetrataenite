@@ -45,6 +45,8 @@ modules:
         scope: system
         repo:
           title: Flathub (system)
+          url: https://dl.flathub.org/repo/flathub.flatpakrepo
+          type: system
         install:
           - com.github.tchx84.Flatseal
 
