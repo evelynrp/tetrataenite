@@ -27,9 +27,14 @@ modules:
     install:
       install-weak-deps: false
       packages:
+        - adobe-source-code-pro-fonts
+        - adobe-source-sans-pro-fonts
+        - adobe-source-serif-pro-fonts
         - bazaar
         - distrobox
         - google-chrome-stable
+        - google-noto-emoji-fonts
+        - google-noto-sans-cjk-fonts
         - tetrataenite-logos-0.0.2-1.fc43.x86_64.rpm
         - neovim
         - vim
