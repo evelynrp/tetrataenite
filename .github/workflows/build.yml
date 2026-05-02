@@ -28,8 +28,15 @@ jobs:
         recipe:
           # !! Add your recipes here
           - recipe-gnome.yml
+          - recipe-gnome-nvidia.yml
           - recipe-plasma.yml
     steps:
+      - uses: actions/checkout@v4
+      - name: Extract kernel signing key
+        shell: bash
+        env:
+          KERNEL_SIGNING_SECRET: ${{ secrets.KERNEL_SIGNING_SECRET }}
+        run: echo "${KERNEL_SIGNING_SECRET}" | base64 -d > MOK.priv
       # the build is fully handled by the reusable github action
       - name: Build Custom Image
         uses: blue-build/github-action@v1.11
@@ -38,6 +45,7 @@ jobs:
           cosign_private_key: ${{ secrets.SIGNING_SECRET }}
           registry_token: ${{ github.token }}
           pr_event_number: ${{ github.event.number }}
+          skip_checkout: true   # important since we've already checked out above
 
           # enabled by default, disable if your image is small and you want faster builds
           maximize_build_space: true
