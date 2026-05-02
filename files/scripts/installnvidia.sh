@@ -89,8 +89,9 @@ curl -fLsS --retry 5 -o /etc/yum.repos.d/nvidia-container-toolkit.repo \
 sed -i 's/^gpgcheck=0/gpgcheck=1/' /etc/yum.repos.d/nvidia-container-toolkit.repo
 sed -i '/\[nvidia-container-toolkit\]/,/\[/{s/^enabled=.*/enabled=1/}' /etc/yum.repos.d/nvidia-container-toolkit.repo
 sed -i '/\[nvidia-container-toolkit-experimental\]/,/\[/{s/^enabled=.*/enabled=0/}' /etc/yum.repos.d/nvidia-container-toolkit.repo
+sed -i '/\[nvidia-container-toolkit\]/a sslverify=0' /etc/yum.repos.d/nvidia-container-toolkit.repo
 
-dnf -y --setopt=install_weak_deps=False install "${nvidia_packages_list[@]}"
+dnf -y --setopt=install_weak_deps=False --setopt=sslverify=False install "${nvidia_packages_list[@]}"
 
 curl -fLsS --retry 5 \
     https://raw.githubusercontent.com/NVIDIA/dgx-selinux/master/bin/RHEL9/nvidia-container.pp \
