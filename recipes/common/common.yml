@@ -68,6 +68,12 @@ modules:
         - flatpak-system-update.timer
         - bootc-fetch-apply-updates.timer
 
+  - type: justfiles
+    validate: true
+    install: true
+    include:
+      - common.just
+
   - type: script
     scripts:
       - set-build-date.sh
