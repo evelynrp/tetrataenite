@@ -41,10 +41,10 @@ System services handle autamatic bootc and flatpak updates. BlueBuild's brew mod
 
 Firefox was removed completely and replaced with Google Chrome with policies from [RKNF404's Chromium Hardening Guide](https://github.com/RKNF404/chromium-hardening-guide). While I support Mozilla ideologically, there are some concerns about Firefox's security, especially process isolation. secureblue's Trivalent was ultimately decided against because it presents a high learning curve.
 
-Default app stores such as Gnome Software were removed and replaced with secureblue's Bazaar rpm. This comes with "Verified Only" checked by default, and blocklists all web browsers. I considered this an essential security feature.
+Default app stores such as Gnome Software were removed and replaced with secureblue's Bazaar rpm. This comes with "Verified Only" checked by default, and blocklists all web browsers. I consider this an essential security feature.
+
+Nvidia images use the nvidia-open kernel modules and are intended for use only on Turing cards and later. Please note that nvidia-container-toolkit was dropped, so you will be unable to pass the GPU into docker/podman containers. Everything else, including CUDA, is still included.
 
 VS Code and some fonts were previously included, but have been removed from the image to simplify the codebase and reduce dependencies on external repositories. It is now recommended to install these via brew. You may want to tap [uBlue's homebrew tap](https://github.com/ublue-os/homebrew-tap).
-
-Nvidia images have also been deprecated to simplify the codebase and reduce build load. Tetrataenite is not intended for gaming, video editing, local AI, or other GPU-intensive tasks. This may change in the near future.
 
 Because this image is intended to be a turnkey solution for nontechnical users, only Gnome and Plasma images are currently available.
