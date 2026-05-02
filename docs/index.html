@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>tetrataenite | A better desktop, ready to go</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --blue:       #51a2da;
+      --blue-dark:  #2e7eb8;
+      --blue-dim:   #1a4a6e;
+      --navy:       #0d1520;
+      --navy-mid:   #111e2e;
+      --navy-card:  #162032;
+      --navy-border:#1f3048;
+      --white:      #f0f4f8;
+      --muted:      #8aa4be;
+      --accent:     #7ecfff;
+      --green:      #5ec48a;
+      --radius:     10px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--navy);
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 17px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(13,21,32,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--navy-border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      height: 60px;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+    }
+
+    .nav-logo svg {
+      height: 28px;
+      width: auto;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--white); }
+
+    .nav-cta {
+      background: var(--blue);
+      color: var(--navy) !important;
+      padding: 0.4rem 1rem;
+      border-radius: 6px;
+      font-weight: 700 !important;
+      transition: background 0.2s !important;
+    }
+
+    .nav-cta:hover { background: var(--accent) !important; color: var(--navy) !important; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 88vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 5rem 2rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 50% at 50% 0%, rgba(81,162,218,0.13) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 30% at 20% 80%, rgba(81,162,218,0.06) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    /* Subtle grid lines */
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(81,162,218,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(81,162,218,0.04) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none;
+    }
+
+    .hero-logo {
+      width: min(520px, 90vw);
+      margin-bottom: 2.5rem;
+      position: relative;
+      z-index: 1;
+      animation: fadeUp 0.7s ease both;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin-bottom: 1.25rem;
+      position: relative;
+      z-index: 1;
+      animation: fadeUp 0.7s 0.1s ease both;
+    }
+
+    .hero h1 span {
+      color: var(--blue);
+    }
+
+    .hero-sub {
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
+      color: var(--muted);
+      max-width: 580px;
+      margin-bottom: 2.5rem;
+      font-weight: 300;
+      position: relative;
+      z-index: 1;
+      animation: fadeUp 0.7s 0.2s ease both;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      position: relative;
+      z-index: 1;
+      animation: fadeUp 0.7s 0.3s ease both;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.75rem 1.75rem;
+      border-radius: var(--radius);
+      font-weight: 600;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: all 0.2s;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--blue);
+      color: var(--navy);
+    }
+
+    .btn-primary:hover {
+      background: var(--accent);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--white);
+      border: 1.5px solid var(--navy-border);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--blue);
+      color: var(--blue);
+      transform: translateY(-1px);
+    }
+
+    /* ── SECTION COMMON ── */
+    section {
+      padding: 5rem 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--blue);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+
+    .section-intro {
+      color: var(--muted);
+      max-width: 620px;
+      font-weight: 300;
+      font-size: 1.05rem;
+      margin-bottom: 3rem;
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      border: none;
+      height: 1px;
+      background: var(--navy-border);
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    /* ── PAIN SECTION ── */
+    .pain-section {
+      background: var(--navy-mid);
+      border-top: 1px solid var(--navy-border);
+      border-bottom: 1px solid var(--navy-border);
+      padding: 5rem 2rem;
+    }
+
+    .pain-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .pain-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+
+    .pain-card {
+      background: var(--navy-card);
+      border: 1px solid var(--navy-border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+
+    .pain-icon {
+      font-size: 1.4rem;
+      flex-shrink: 0;
+      line-height: 1;
+      margin-top: 0.1rem;
+    }
+
+    .pain-card h3 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+      color: var(--white);
+    }
+
+    .pain-card p {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    /* ── BENEFITS ── */
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .benefit-card {
+      background: var(--navy-card);
+      border: 1px solid var(--navy-border);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .benefit-card:hover {
+      border-color: var(--blue-dim);
+      transform: translateY(-2px);
+    }
+
+    .benefit-icon {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .benefit-card h3 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .benefit-card p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ── EDITIONS ── */
+    .editions-section {
+      background: var(--navy-mid);
+      border-top: 1px solid var(--navy-border);
+      border-bottom: 1px solid var(--navy-border);
+      padding: 5rem 2rem;
+    }
+
+    .editions-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .editions-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
+    }
+
+    @media (max-width: 560px) {
+      .editions-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .edition-card {
+      background: var(--navy);
+      border: 1.5px solid var(--navy-border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      transition: border-color 0.2s;
+    }
+
+    .edition-card:hover {
+      border-color: var(--blue);
+    }
+
+    .edition-name {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.85rem;
+      color: var(--blue);
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.03em;
+    }
+
+    .edition-card h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .edition-card p {
+      font-size: 0.87rem;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .edition-tag {
+      display: inline-block;
+      margin-top: 0.75rem;
+      font-size: 0.75rem;
+      background: rgba(81,162,218,0.12);
+      color: var(--blue);
+      border-radius: 4px;
+      padding: 0.2rem 0.5rem;
+      font-weight: 500;
+    }
+
+    /* ── INSTALL ── */
+    .install-box {
+      background: var(--navy-card);
+      border: 1px solid var(--navy-border);
+      border-radius: var(--radius);
+      padding: 2rem;
+      margin-top: 2.5rem;
+    }
+
+    .install-step {
+      margin-bottom: 1.75rem;
+    }
+
+    .install-step:last-child { margin-bottom: 0; }
+
+    .step-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 26px;
+      height: 26px;
+      background: var(--blue);
+      color: var(--navy);
+      font-size: 0.8rem;
+      font-weight: 700;
+      border-radius: 50%;
+      margin-bottom: 0.6rem;
+    }
+
+    .install-step h4 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .install-step p {
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin-bottom: 0.75rem;
+    }
+
+    pre {
+      background: var(--navy);
+      border: 1px solid var(--navy-border);
+      border-radius: 6px;
+      padding: 1rem 1.25rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.82rem;
+      color: var(--accent);
+      overflow-x: auto;
+      line-height: 1.7;
+    }
+
+    pre .comment { color: var(--muted); }
+
+    .install-note {
+      margin-top: 1.5rem;
+      padding: 1rem 1.25rem;
+      background: rgba(81,162,218,0.07);
+      border-left: 3px solid var(--blue);
+      border-radius: 0 6px 6px 0;
+      font-size: 0.87rem;
+      color: var(--muted);
+    }
+
+    .install-note strong { color: var(--white); }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--navy-border);
+      padding: 2.5rem 2rem;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    footer a {
+      color: var(--blue);
+      text-decoration: none;
+    }
+
+    footer a:hover { text-decoration: underline; }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      nav { padding: 0 1rem; }
+      .nav-links { display: none; }
+      section { padding: 3.5rem 1.25rem; }
+      .pain-section, .editions-section { padding: 3.5rem 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">
+    <svg viewBox="0 0 512 512" fill="#51a2da" xmlns="http://www.w3.org/2000/svg">
+      <g transform="translate(28, 0) scale(0.94)">
+        <path d="m 443.455,290.286 h 0.002 0.001 l 63.937,-36.914 -16.696,-28.917 -63.937,36.914 -68.686,-39.656 V 142.402 L 422.013,105.488 405.317,76.571 341.38,113.485 272.694,73.828 V 0 h -33.391 v 73.829 l -68.686,39.656 -63.937,-36.915 -16.696,28.917 63.938,36.915 v 79.311 L 85.237,261.369 21.299,224.454 4.604,253.371 68.542,290.285 v 79.311 l -63.938,36.916 16.695,28.917 63.803,-36.837 68.819,39.595 V 512 h 33.391 v -73.829 l 68.551,-39.579 68.819,39.595 V 512 h 33.391 v -73.829 l 68.686,-39.656 63.937,36.915 16.696,-28.917 -63.937,-36.915 z m -204.151,79.312 v 0 l -68.701,39.663 -68.671,-39.51 v -79.466 l 68.551,-39.578 68.821,39.595 z M 187.313,221.867 v -79.466 l 68.686,-39.655 68.686,39.656 v 79.311 l -68.7,39.664 z m 154.053,187.396 -68.671,-39.511 v -79.465 l 68.686,-39.656 63.937,36.914 4.748,2.741 v 79.311 h 0.001 z"/>
+      </g>
+    </svg>
+    <span style="font-weight:600; font-size:1rem; letter-spacing:-0.01em;">tetrataenite</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#why">Why switch?</a></li>
+    <li><a href="#benefits">What you get</a></li>
+    <li><a href="#editions">Editions</a></li>
+    <li><a href="#install" class="nav-cta">Get started</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <svg class="hero-logo" viewBox="0 0 2176 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Icon -->
+    <g fill="#51a2da">
+      <path d="m 443.455,290.286 h 0.002 0.001 l 63.937,-36.914 -16.696,-28.917 -63.937,36.914 -68.686,-39.656 V 142.402 L 422.013,105.488 405.317,76.571 341.38,113.485 272.694,73.828 V 0 h -33.391 v 73.829 l -68.686,39.656 -63.937,-36.915 -16.696,28.917 63.938,36.915 v 79.311 L 85.237,261.369 21.299,224.454 4.604,253.371 68.542,290.285 v 79.311 l -63.938,36.916 16.695,28.917 63.803,-36.837 68.819,39.595 V 512 h 33.391 v -73.829 l 68.551,-39.579 68.819,39.595 V 512 h 33.391 v -73.829 l 68.686,-39.656 63.937,36.915 16.696,-28.917 -63.937,-36.915 z m -204.151,79.312 v 0 l -68.701,39.663 -68.671,-39.51 v -79.466 l 68.551,-39.578 68.821,39.595 z M 187.313,221.867 v -79.466 l 68.686,-39.655 68.686,39.656 v 79.311 l -68.7,39.664 z m 154.053,187.396 -68.671,-39.511 v -79.465 l 68.686,-39.656 63.937,36.914 4.748,2.741 v 79.311 h 0.001 z"/>
+    </g>
+    <!-- "tetrataenite" text -->
+    <text x="600" y="390" font-family="'DM Sans', sans-serif" font-size="300" font-weight="700" fill="#ffffff" letter-spacing="-6">tetrataenite</text>
+  </svg>
+
+  <h1>Your computer deserves<br><span>a better operating system.</span></h1>
+  <p class="hero-sub">A secure, polished Linux desktop that updates itself, never nags you, and puts you back in control. Built on Fedora, ready to use.</p>
+  <div class="hero-buttons">
+    <a href="#install" class="btn btn-primary">Get tetrataenite</a>
+    <a href="#why" class="btn btn-secondary">Why switch?</a>
+  </div>
+</div>
+
+<!-- PAIN SECTION -->
+<div class="pain-section" id="why">
+  <div class="pain-inner">
+    <p class="section-label">Sound familiar?</p>
+    <h2 class="section-title">Windows keeps getting worse.</h2>
+    <p class="section-intro">It's not your imagination. Windows has become a platform that works for Microsoft first and you second.</p>
+    <div class="pain-grid">
+      <div class="pain-card">
+        <span class="pain-icon">📢</span>
+        <div>
+          <h3>Ads in your own desktop</h3>
+          <p>Pop-ups in the Start menu, the lock screen, File Explorer, and Settings, all selling you things you didn't ask for.</p>
+        </div>
+      </div>
+      <div class="pain-card">
+        <span class="pain-icon">👁️</span>
+        <div>
+          <h3>Constant surveillance</h3>
+          <p>Hidden processes log what you type, what you open, and what you search, and then send it to Microsoft's servers.</p>
+        </div>
+      </div>
+      <div class="pain-card">
+        <span class="pain-icon">🔄</span>
+        <div>
+          <h3>Forced restarts at the worst time</h3>
+          <p>Updates that reboot your machine mid-task, break your software, and reset your preferences without asking.</p>
+        </div>
+      </div>
+      <div class="pain-card">
+        <span class="pain-icon">🔒</span>
+        <div>
+          <h3>Your browser, their choice</h3>
+          <p>Edge re-installs itself. Your default browser resets. Your search engine gets replaced. Every. Single. Update.</p>
+        </div>
+      </div>
+      <div class="pain-card">
+        <span class="pain-icon">💸</span>
+        <div>
+          <h3>Subscriptions for everything</h3>
+          <p>A Microsoft account required just to use your own computer. Office costs extra. Copilot costs extra. It never ends.</p>
+        </div>
+      </div>
+      <div class="pain-card">
+        <span class="pain-icon">🗑️</span>
+        <div>
+          <h3>Your hardware, artificially obsolete</h3>
+          <p>Perfectly capable machines declared incompatible with Windows 11 to push you toward buying something new.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- BENEFITS -->
+<section id="benefits">
+  <p class="section-label">What you get instead</p>
+  <h2 class="section-title">A computer that works for you.</h2>
+  <p class="section-intro">tetrataenite is built around a simple idea: your computer should do what you want, quietly and reliably, without getting in your way.</p>
+
+  <div class="benefits-grid">
+    <div class="benefit-card">
+      <span class="benefit-icon">🛡️</span>
+      <h3>Updates that can't break your system</h3>
+      <p>tetrataenite uses atomic updates. The whole system updates as one piece, and if anything goes wrong, you can roll back to the last working version. You will never be stuck with a broken computer after an update again.</p>
+    </div>
+    <div class="benefit-card">
+      <span class="benefit-icon">🔕</span>
+      <h3>Updates on your schedule</h3>
+      <p>Updates happen quietly in the background. Your computer only switches to the new version when you restart. When you're ready, not when Microsoft decides.</p>
+    </div>
+    <div class="benefit-card">
+      <span class="benefit-icon">🚫</span>
+      <h3>Zero ads. Ever.</h3>
+      <p>No ads in the desktop. No ads in the app store. No promotional pop-ups. No bloatware. Your desktop is yours.</p>
+    </div>
+    <div class="benefit-card">
+      <span class="benefit-icon">🔐</span>
+      <h3>Your data stays on your computer</h3>
+      <p>No telemetry. No keylogging. No background processes watching what you do. tetrataenite doesn't phone home because it has no reason to.</p>
+    </div>
+    <div class="benefit-card">
+      <span class="benefit-icon">🏪</span>
+      <h3>A safe, unified app store</h3>
+      <p>Bazaar gives you a curated store of vetted software. No hunting for downloads across shady websites, no accidental malware. Just search, install, done. Verified apps only, by default.</p>
+    </div>
+    <div class="benefit-card">
+      <span class="benefit-icon">🌐</span>
+      <h3>A browser built for security</h3>
+      <p>Google Chrome comes pre-configured with hardened settings and policies that most users would never know to set themselves, giving you strong protection right out of the box.</p>
+    </div>
+    <div class="benefit-card">
+      <span class="benefit-icon">⚙️</span>
+      <h3>Truly maintenance-free</h3>
+      <p>The system updates itself. Apps update themselves. You don't need to think about it. tetrataenite is designed to keep itself healthy so you don't have to.</p>
+    </div>
+    <div class="benefit-card">
+      <span class="benefit-icon">🆓</span>
+      <h3>Free. Forever. No catch.</h3>
+      <p>No license. No account required. No subscription. No hardware requirements designed to force an upgrade. tetrataenite is open-source software, built and shared freely.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- EDITIONS -->
+<div class="editions-section" id="editions">
+  <div class="editions-inner">
+    <p class="section-label">Choose your edition</p>
+    <h2 class="section-title">Pick the one that's right for you.</h2>
+    <p class="section-intro">tetrataenite comes in two desktop flavors. Not sure which to pick? GNOME is a safe default for most people.</p>
+
+    <div class="editions-grid">
+      <div class="edition-card">
+        <p class="edition-name">tetrataenite-gnome</p>
+        <h3>GNOME</h3>
+        <p>A clean, focused desktop designed to get out of your way. Simple, modern, and polished. The recommended choice if you're coming from Windows.</p>
+        <span class="edition-tag">Recommended</span>
+      </div>
+      <div class="edition-card">
+        <p class="edition-name">tetrataenite-gnome-nvidia-open</p>
+        <h3>GNOME + NVIDIA</h3>
+        <p>The same GNOME experience, with NVIDIA drivers pre-installed and ready. For NVIDIA graphics cards from the Turing generation (RTX 20 series) or newer.</p>
+        <span class="edition-tag">NVIDIA GPU</span>
+      </div>
+      <div class="edition-card">
+        <p class="edition-name">tetrataenite-plasma</p>
+        <h3>KDE Plasma</h3>
+        <p>A highly customizable desktop that can be made to feel like any version of Windows, or something entirely its own. Great if you like tweaking things.</p>
+        <span class="edition-tag">Customizable</span>
+      </div>
+      <div class="edition-card">
+        <p class="edition-name">tetrataenite-plasma-nvidia-open</p>
+        <h3>KDE Plasma + NVIDIA</h3>
+        <p>Full KDE Plasma with NVIDIA drivers built in. For NVIDIA graphics cards from the Turing generation (RTX 20 series) or newer.</p>
+        <span class="edition-tag">NVIDIA GPU</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- INSTALL -->
+<section id="install">
+  <p class="section-label">Get started</p>
+  <h2 class="section-title">Switch in two steps.</h2>
+  <p class="section-intro">If you're already running Fedora Atomic (Silverblue, Kinoite, or similar), switching to tetrataenite takes just a few commands and two restarts.</p>
+
+  <div class="install-box">
+    <div class="install-step">
+      <div class="step-num">1</div>
+      <h4>Rebase to the unsigned image</h4>
+      <p>This gets the signing keys onto your system. Replace <code style="font-family:'DM Mono',monospace;color:var(--accent);font-size:0.82rem;">tetrataenite-gnome</code> with your chosen edition from the list above.</p>
+      <pre><span class="comment"># Step 1 — fetch unsigned image to import signing keys</span>
+rpm-ostree rebase ostree-unverified-registry:ghcr.io/evelynrp/tetrataenite-gnome
+systemctl reboot</pre>
+    </div>
+    <div class="install-step">
+      <div class="step-num">2</div>
+      <h4>Rebase to the signed image</h4>
+      <p>After the reboot, run this to switch to the verified, signed version of tetrataenite.</p>
+      <pre><span class="comment"># Step 2 — switch to the signed image</span>
+rpm-ostree rebase ostree-image-signed:docker://ghcr.io/evelynrp/tetrataenite-gnome
+systemctl reboot</pre>
+    </div>
+    <div class="install-note">
+      <strong>New to Linux?</strong> The easiest path is to install <a href="https://fedoraproject.org/atomic-desktops/silverblue/" style="color:var(--blue);">Fedora Silverblue</a> first, then follow the steps above. If you'd like help getting started, the <a href="https://discussion.fedoraproject.org/" style="color:var(--blue);">Fedora community forums</a> are friendly to newcomers.
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p style="margin-bottom:0.5rem;">
+    tetrataenite is open source — <a href="https://github.com/evelynrp/tetrataenite">view on GitHub</a>.
+    Built with <a href="https://blue-build.org/">BlueBuild</a> on top of <a href="https://fedoraproject.org/">Fedora Linux</a>.
+  </p>
+  <p style="color:#4a6680; font-size:0.8rem; margin-top:0.5rem;">
+    Not affiliated with the Fedora Project or Red Hat. Tailored to one person's taste, but you're welcome to use it.
+  </p>
+</footer>
+
+</body>
+</html>
