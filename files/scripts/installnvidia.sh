@@ -20,6 +20,12 @@ mkdir -p /var/tmp
 chmod 1777 /var/tmp
 
 ##################################
+# CA trust
+##################################
+dnf install -y --setopt=install_weak_deps=False ca-certificates
+update-ca-trust
+
+##################################
 # Repository setup
 ##################################
 KERNEL_VERSION="$(rpm -q "kernel" --queryformat '%{VERSION}-%{RELEASE}.%{ARCH}')"
@@ -27,7 +33,7 @@ RELEASE="$(rpm -E '%fedora.%_arch')"
 if [[ "$IMAGE_NAME" == *"open"* ]]; then
     curl -fLsS --retry 5 -o /etc/yum.repos.d/negativo17-fedora-nvidia.repo https://negativo17.org/repos/fedora-nvidia.repo
     sed -i '/^enabled=1/a\priority=90' /etc/yum.repos.d/negativo17-fedora-nvidia.repo
-else 
+else
     curl -fLsS --retry 5 -o /etc/yum.repos.d/fedora-nvidia-580.repo https://negativo17.org/repos/fedora-nvidia-580.repo
     sed -i '/^enabled=1/a\priority=90' /etc/yum.repos.d/fedora-nvidia-580.repo
 
@@ -39,7 +45,6 @@ fi
 #################################
 # Kernel module
 #################################
-dnf install -y --setopt=install_weak_deps=False ca-certificates
 dnf install -y --setopt=install_weak_deps=False "kernel-devel-matched-$(rpm -q 'kernel' --queryformat '%{VERSION}')"
 
 dnf install -y --setopt=install_weak_deps=False akmods gcc-c++
@@ -78,14 +83,17 @@ nvidia_packages_list=(\
     'libva-nvidia-driver' \
 )
 
-curl -L https://nvidia.github.io/libnvidia-container/stable/rpm/nvidia-container-toolkit.repo \
-    -o /etc/yum.repos.d/nvidia-container-toolkit.repo
+curl -fLsS --retry 5 -o /etc/yum.repos.d/nvidia-container-toolkit.repo \
+    https://nvidia.github.io/libnvidia-container/stable/rpm/nvidia-container-toolkit.repo
+# Enable stable repo, ensure experimental repo is disabled, enforce gpg checking
 sed -i 's/^gpgcheck=0/gpgcheck=1/' /etc/yum.repos.d/nvidia-container-toolkit.repo
-sed -i 's/^enabled=0.*/enabled=1/' /etc/yum.repos.d/nvidia-container-toolkit.repo
+sed -i '/\[nvidia-container-toolkit\]/,/\[/{s/^enabled=.*/enabled=1/}' /etc/yum.repos.d/nvidia-container-toolkit.repo
+sed -i '/\[nvidia-container-toolkit-experimental\]/,/\[/{s/^enabled=.*/enabled=0/}' /etc/yum.repos.d/nvidia-container-toolkit.repo
 
 dnf -y --setopt=install_weak_deps=False install "${nvidia_packages_list[@]}"
 
-curl -L https://raw.githubusercontent.com/NVIDIA/dgx-selinux/master/bin/RHEL9/nvidia-container.pp \
+curl -fLsS --retry 5 \
+    https://raw.githubusercontent.com/NVIDIA/dgx-selinux/master/bin/RHEL9/nvidia-container.pp \
     -o nvidia-container.pp
 semodule -i nvidia-container.pp
 
