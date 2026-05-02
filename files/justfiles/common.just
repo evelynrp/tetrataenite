@@ -4,11 +4,13 @@ ublue-brew-tap:
     brew tap ublue-os/tap
     echo 'Universal Blue's homebrew tap is now installed.'
 
+# Failsafe to enable system flathub in case they don't get baked in
 enable-system-flathub:
     #!/usr/bin/bash
     flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
     echo 'Flathub is now enabled.'
 
+# Install MS Core Fonts
 install-ms-core-fonts:
     #!/usr/bin/env bash
     set -euo pipefail

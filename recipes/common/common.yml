@@ -73,6 +73,7 @@ modules:
     install: true
     include:
       - common.just
+      - 30-secureboot.just
 
   - type: script
     scripts:
