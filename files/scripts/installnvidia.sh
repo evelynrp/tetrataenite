@@ -39,6 +39,7 @@ fi
 #################################
 # Kernel module
 #################################
+dnf install -y --setopt=install_weak_deps=False ca-certificates
 dnf install -y --setopt=install_weak_deps=False "kernel-devel-matched-$(rpm -q 'kernel' --queryformat '%{VERSION}')"
 
 dnf install -y --setopt=install_weak_deps=False akmods gcc-c++
