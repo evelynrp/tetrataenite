@@ -78,25 +78,11 @@ nvidia_packages_list=(\
     'nvidia-persistenced' \
     'nvidia-settings' \
     'nvidia-driver-cuda' \
-    'nvidia-container-toolkit' \
     'libnvidia-fbc' \
     'libva-nvidia-driver' \
 )
 
-curl -fLsS --retry 5 -o /etc/yum.repos.d/nvidia-container-toolkit.repo \
-    https://nvidia.github.io/libnvidia-container/stable/rpm/nvidia-container-toolkit.repo
-# Enable stable repo, ensure experimental repo is disabled, enforce gpg checking
-sed -i 's/^gpgcheck=0/gpgcheck=1/' /etc/yum.repos.d/nvidia-container-toolkit.repo
-sed -i '/\[nvidia-container-toolkit\]/,/\[/{s/^enabled=.*/enabled=1/}' /etc/yum.repos.d/nvidia-container-toolkit.repo
-sed -i '/\[nvidia-container-toolkit-experimental\]/,/\[/{s/^enabled=.*/enabled=0/}' /etc/yum.repos.d/nvidia-container-toolkit.repo
-sed -i '/\[nvidia-container-toolkit\]/a sslverify=0' /etc/yum.repos.d/nvidia-container-toolkit.repo
-
-dnf -y --setopt=install_weak_deps=False --setopt=sslverify=False install "${nvidia_packages_list[@]}"
-
-curl -fLsS --retry 5 \
-    https://raw.githubusercontent.com/NVIDIA/dgx-selinux/master/bin/RHEL9/nvidia-container.pp \
-    -o nvidia-container.pp
-semodule -i nvidia-container.pp
+dnf -y --setopt=install_weak_deps=False install "${nvidia_packages_list[@]}"
 
 ##################################
 # Cleanup
@@ -107,7 +93,5 @@ if [ -f /etc/yum.repos.d/fedora-multimedia.repo ]; then
     sed -i 's/^enabled=.*/enabled=1/' /etc/yum.repos.d/fedora-multimedia.repo
 fi
 
-rm -f nvidia-container.pp
-rm -f /etc/yum.repos.d/nvidia-container-toolkit.repo
 rm -f /etc/yum.repos.d/fedora-nvidia-580.repo
 rm -f /etc/yum.repos.d/negativo17-fedora-nvidia.repo
