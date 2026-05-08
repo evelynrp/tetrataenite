@@ -32,7 +32,7 @@ jobs:
           - recipe-plasma.yml
           - recipe-plasma-nvidia-open.yml
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Extract kernel signing key
         shell: bash
         env:
