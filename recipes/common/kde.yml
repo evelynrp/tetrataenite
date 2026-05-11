@@ -5,6 +5,7 @@ modules:
     install:
       install-weak-deps: false
       packages:
+        - kio_mtp
         - krunner-bazaar
     remove:
       packages:

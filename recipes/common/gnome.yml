@@ -7,6 +7,7 @@ modules:
       packages:
         - adw-gtk3-theme
         - gnome-tweaks
+        - gvfs-mtp
     remove:
       packages:
         - epiphany-runtime
