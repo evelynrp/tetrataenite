@@ -37,6 +37,7 @@ modules:
         - google-noto-emoji-fonts
         - google-noto-sans-cjk-fonts
         - opendyslexic-fonts
+        - steam-devices
         - tetrataenite-logos-0.0.2-1.fc43.x86_64.rpm
         - neovim
         - vim
