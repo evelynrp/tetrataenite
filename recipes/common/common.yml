@@ -24,6 +24,7 @@ modules:
         - secureblue/packages
       files:
         - google-chrome.repo
+        - https://repository.mullvad.net/rpm/stable/mullvad.repo
     install:
       install-weak-deps: false
       packages:
@@ -36,6 +37,7 @@ modules:
         - google-chrome-stable
         - google-noto-emoji-fonts
         - google-noto-sans-cjk-fonts
+        - mullvad-vpn
         - opendyslexic-fonts
         - steam-devices
         - tetrataenite-logos-0.0.2-1.fc43.x86_64.rpm

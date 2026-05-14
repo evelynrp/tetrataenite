@@ -14,6 +14,7 @@ One can only deal with finding trojans on work computers so many times. I wanted
 - **brew** - Easily install CLI tools
 - **Bazaar** - A fast, beautiful, and modern app store
 - **Google Chrome** - Browse safely and securely with custom policies and flags
+- **Mullvad VPN** - Browse safely and anonymously with a reputable zero-logs VPN
 
 ## Should I use this?
 
