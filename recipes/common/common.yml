@@ -25,6 +25,7 @@ modules:
       files:
         - google-chrome.repo
         - https://repository.mullvad.net/rpm/stable/mullvad.repo
+        - https://repo.secureblue.dev/secureblue.repo
     install:
       install-weak-deps: false
       packages:
@@ -41,6 +42,7 @@ modules:
         - opendyslexic-fonts
         - steam-devices
         - tetrataenite-logos-0.0.2-1.fc43.x86_64.rpm
+        - trivalent
         - neovim
         - vim
 
@@ -71,12 +73,6 @@ modules:
     brew-analytics: false
     auto-update: true
     auto-upgrade: true
-
-  - type: systemd
-    system:
-      enabled:
-        - flatpak-system-update.timer
-        - bootc-fetch-apply-updates.timer
 
   - type: justfiles
     validate: true

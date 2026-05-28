@@ -6,8 +6,8 @@ name: tetrataenite-gnome
 description: A reasonably secure KISS desktop.
 
 # the base image to build on top of (FROM) and the version tag to use
-base-image: quay.io/fedora-ostree-desktops/silverblue
-image-version: 44
+base-image: ghcr.io/blue-build/base-images/fedora-silverblue
+image-version: latest
 platforms:
   - linux/amd64
 
