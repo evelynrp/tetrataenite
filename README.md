@@ -42,11 +42,11 @@ Replace `tetrataenite-gnome` with your chosen image from this list:
 
 System services handle autamatic bootc and flatpak updates. BlueBuild's brew module handles automatic updates of brew and brew-installed applications.
 
-Firefox was removed completely and replaced with Google Chrome with policies from [RKNF404's Chromium Hardening Guide](https://github.com/RKNF404/chromium-hardening-guide). While I support Mozilla ideologically, there are some concerns about Firefox's security, especially process isolation. secureblue's Trivalent was ultimately decided against because it presents a high learning curve.
+Firefox was removed completely and replaced with Google Chrome with policies from [RKNF404's Chromium Hardening Guide](https://github.com/RKNF404/chromium-hardening-guide). While I support Mozilla ideologically, there are some concerns about Firefox's security, especially process isolation. secureblue's Trivalent is also included for those wanting increased security.
 
 Default app stores such as Gnome Software were removed and replaced with secureblue's Bazaar rpm. This comes with "Verified Only" checked by default, and blocklists all web browsers. I consider this an essential security feature.
 
-Nvidia images use the nvidia-open kernel modules and are intended for use only on Turing cards and later. Please note that nvidia-container-toolkit was dropped, so you will be unable to pass the GPU into docker/podman containers. Everything else, including CUDA, is still included.
+Nvidia images use the nvidia-open kernel modules and are intended for use only on Turing cards and later.
 
 VS Code and some fonts were previously included, but have been removed from the image to simplify the codebase and reduce dependencies on external repositories. It is now recommended to install these via brew. You may want to tap [uBlue's homebrew tap](https://github.com/ublue-os/homebrew-tap). Justfiles are included to make it easier to install Microsoft fonts and the Universal Blue homebrew tap.
 
