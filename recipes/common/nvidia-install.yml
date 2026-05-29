@@ -9,14 +9,16 @@ modules:
         destination: /
 
   - type: script
-    scripts:
-      - installnvidiakmod.sh
+    env:
+      PUBLIC_KEY_DER_PATH: /etc/pki/akmods/certs/akmods-tetrataenite.der
     secrets:
-      - type: env
-        name: KERNEL_SIGNING_SECRET
+      - type: file
+        source: ./MOK.priv
         mount:
           type: file
           destination: /tmp/certs/private_key.priv
+    scripts:
+      - installnvidiakmod.sh
 
   - type: script
     scripts:

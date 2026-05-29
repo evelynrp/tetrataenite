@@ -80,7 +80,6 @@ modules:
         - flatpak-system-update.timer
         - bootc-fetch-apply-updates.timer
 
-
   - type: justfiles
     validate: true
     install: true
