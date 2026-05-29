@@ -1,0 +1,8 @@
+---
+# yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
+modules:
+  - type: akmods
+    base: asus # if not specified, classic "main" base is used by default
+    install:
+      - nvidia
+    nvidia-driver: nvidia-open
