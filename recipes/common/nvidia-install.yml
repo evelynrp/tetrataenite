@@ -1,0 +1,26 @@
+# SPDX-FileCopyrightText: Copyright 2025-2026 The Secureblue Authors
+#
+# SPDX-License-Identifier: Apache-2.0
+
+modules:
+  - type: files
+    files:
+      - source: system/nvidia
+        destination: /
+
+  - type: script
+    scripts:
+      - installnvidiakmod.sh
+    secrets:
+      - type: env
+        name: KERNEL_SIGNING_SECRET
+        mount:
+          type: file
+          destination: /tmp/certs/private_key.priv
+
+  - type: script
+    scripts:
+      - installnvidiapackages.sh
+      - remove-nvidia-repos.sh
+      - setearlyloading.sh
+      - setdrmvariables.sh
