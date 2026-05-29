@@ -25,7 +25,7 @@ sed -i.backup -e '/if \[\[ -w \/var \]\] ; then/,/fi/d' /usr/sbin/akmodsbuild
 
 dnf install -y --setopt=install_weak_deps=False \
     --enable-repo="${nvidia_repo}" \
-    --disable-repo='fedora-multimedia' \
+#    --disable-repo='fedora-multimedia' \
     nvidia-kmod-common nvidia-modprobe akmod-nvidia
 
 KERNEL_VERSION="$(rpm -q "kernel" --queryformat '%{VERSION}-%{RELEASE}.%{ARCH}')"
