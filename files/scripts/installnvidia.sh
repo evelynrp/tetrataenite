@@ -72,6 +72,7 @@ chmod +x ./signmodules.sh
 ##################################
 nvidia_packages_list=(\
     'nvidia-driver' \
+    'nvidia-driver-libs' \
     'nvidia-persistenced' \
     'nvidia-settings' \
     'nvidia-driver-cuda' \
