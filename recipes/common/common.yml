@@ -84,6 +84,7 @@ modules:
     validate: true
     install: true
     include:
+      - 30-secureboot.just
       - common.just
 
   - type: script
