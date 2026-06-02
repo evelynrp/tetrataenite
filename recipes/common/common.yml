@@ -35,6 +35,7 @@ modules:
         - atkinson-hyperlegible-next-fonts
         - bazaar
         - distrobox
+        - fontawesome-fonts-all
         - google-chrome-stable
         - google-noto-emoji-fonts
         - google-noto-sans-cjk-fonts
