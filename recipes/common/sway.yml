@@ -7,3 +7,8 @@ modules:
       packages:
         - gvfs-mtp
         - thunar-volman
+  
+  - type: files
+    files:
+      - source: sway
+        destination: /
