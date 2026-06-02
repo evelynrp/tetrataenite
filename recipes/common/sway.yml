@@ -5,7 +5,9 @@ modules:
     install:
       install-weak-deps: false
       packages:
+        - adw-gtk3-theme
         - gvfs-mtp
+        - qt5ct
         - thunar-volman
   
   - type: files
