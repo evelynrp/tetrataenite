@@ -65,8 +65,9 @@ modules:
   - type: fonts
     fonts:
       nerd-fonts:
-        - Hack
+        - AtkinsonHyperlegibleMono
         - NerdFontsSymbolsOnly
+        - OpenDyslexic
 
   - type: brew
     nofile-limits: true
