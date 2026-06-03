@@ -25,6 +25,11 @@
   padding: 0.4rem;
 }
 
+#workspaces button.urgent {
+  background-color: @red;
+  border-radius: 1rem;
+}
+
 #workspaces button.empty {
   color: @surface2;
   border-radius: 1rem;
