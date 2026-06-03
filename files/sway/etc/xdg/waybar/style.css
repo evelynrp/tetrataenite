@@ -20,7 +20,7 @@
 }
 
 #workspaces button {
-  color: @lavender;
+  color: @overlay2;
   border-radius: 1rem;
   padding: 0.4rem;
 }
