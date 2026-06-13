@@ -7,6 +7,7 @@ modules:
       packages:
         - adw-gtk3-theme
         - gvfs-mtp
+        - NetworkManager-tui
         - qt5ct
         - thunar-volman
   
