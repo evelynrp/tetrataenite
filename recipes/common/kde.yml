@@ -2,12 +2,9 @@
 # yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
 modules:
   - type: dnf
-    repos:
-      files: https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-44.noarch.rpm
     install:
       install-weak-deps: false
       packages:
-        - devede
         - k3b
         - kio_mtp
         - krunner-bazaar
