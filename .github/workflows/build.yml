@@ -31,8 +31,6 @@ jobs:
           - recipe-gnome-nvidia-open.yml
           - recipe-plasma.yml
           - recipe-plasma-nvidia-open.yml
-          - recipe-sway.yml
-          - recipe-sway-nvidia-open.yml
     steps:
       - uses: actions/checkout@v7
       - name: Extract kernel signing key
