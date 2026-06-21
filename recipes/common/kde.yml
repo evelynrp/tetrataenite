@@ -3,7 +3,7 @@
 modules:
   - type: dnf
     repos:
-      nonfree: negativo17
+      files: https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-44.noarch.rpm
     install:
       install-weak-deps: false
       packages:
