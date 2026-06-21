@@ -2,7 +2,8 @@
 # yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
 modules:
   - type: dnf
-    repos: negativo17
+    repos:
+      nonfree: negativo17
     install:
       install-weak-deps: false
       packages:
