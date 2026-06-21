@@ -76,17 +76,10 @@ modules:
     auto-update: true
     auto-upgrade: true
 
-  - type: systemd
-    system:
-      enabled:
-        - flatpak-system-update.timer
-        - bootc-fetch-apply-updates.timer
-
   - type: justfiles
     validate: true
     install: true
     include:
-      - 30-secureboot.just
       - common.just
 
   - type: script
