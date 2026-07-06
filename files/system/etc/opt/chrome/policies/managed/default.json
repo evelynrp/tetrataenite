@@ -12,6 +12,7 @@
     "BrowserLabsEnabled": false,
     "BrowserSignin": 0,
     "BuiltInAIAPIsEnabled": false,
+    "ChromeSuggestionsSettings": 1,
     "ChromeVariations": 2,
     "ClearBrowsingDataOnExitList": [
         "download_history",
@@ -40,6 +41,8 @@
     ],
     "GeminiActOnWebSettings": 1,
     "GeminiSettings": 1,
+    "GeminiSparkSettings": 1,
+    "GenAILocalFoundationalModelSettings": 1,
     "GoogleSearchSidePanelEnabled": false,
     "HelpMeWriteSettings": 2,
     "HistoryClustersVisible": false,
