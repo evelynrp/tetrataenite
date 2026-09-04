@@ -33,14 +33,14 @@
     ],
     "ExtensionDeveloperModeSettings": 1,
     "ExtensionInstallAllowlist": [
+        "ddkjiahejlhfcafbddmgiahcphecmpfh",
         "nngceckbapebfimnlniiiahkandclblb",
-        "ddkjiahejlhfcafbddmgiahcphecmpfh"
+        "oboonakemofpalcgghocfoadofidjkkk"
     ],
     "ExtensionInstallBlocklist": [
         "*"
     ],
     "GeminiActOnWebSettings": 1,
-    "GeminiSettings": 1,
     "GeminiSparkSettings": 1,
     "GenAILocalFoundationalModelSettings": 1,
     "GoogleSearchSidePanelEnabled": false,
@@ -57,6 +57,7 @@
     ],
     "NetworkPredictionOptions": 2,
     "NetworkServiceSandboxEnabled": true,
+    "NewTabPageLocation": "chrome://new-tab-page-third-party",
     "PasswordLeakDetectionEnabled": false,
     "PasswordManagerEnabled": false,
     "PaymentMethodQueryEnabled": false,
@@ -82,10 +83,12 @@
     "SpellCheckServiceEnabled": false,
     "SyncDisabled": true,
     "TabCompareSettings": 2,
+    "ThirdPartyAiChatSettings": 1,
     "TranslateEnabled": false,
     "TranslatorAPIAllowed": false,
     "UrlKeyedAnonymizedDataCollectionEnabled": false,
     "UserFeedbackAllowed": false,
+    "VoiceTypingSettings": 2,
     "WebRtcIPHandling": "disable_non_proxied_udp",
     "WebRtcTextLogCollectionAllowed": false
 }
