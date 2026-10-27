@@ -1,87 +1,39 @@
-css: |
-  .main banner {
-    background: linear-gradient(45deg, #754e7680, #3bc5f580);
-    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
-    margin: 25px 25px 0px 25px;
-  }
-  .main banner-text {
-    padding: 50px 50px 25px 50px;
-    font-size: 60%;
-  }
-  .main subtitle {
-    font-weight: normal;
-  }
-
 rows:
-  - sections:
-    - expand-horizontally: true
-      category:
-        title: "Suggested for GNOME"
-        subtitle: "Useful apps designed for GNOME."
-        # This is static in pixels, but there seems to be no way to change that yet.
-        banner-height: 250
-        # see https://docs.gtk.org/gtk4/enum.Align.html
-        banner-text-halign: start
-        banner-text-valign: center
-        # see https://docs.gtk.org/gtk4/property.Label.xalign.html
-        banner-text-label-xalign: 0.0
-        appids:
-          - org.gnome.Decibels
-          - org.gnome.Papers
-          - org.gnome.Loupe
-          - org.gnome.TextEditor
-          - org.gnome.Showtime
-          - org.gnome.gitlab.somas.Apostrophe
-          - com.belmoussaoui.Authenticator
-          - org.gnome.World.Secrets
-          - org.gnome.World.PikaBackup
-          - net.codelogistics.letters
-          - org.gnome.Fractal
-      classes:
-        - main
-  - sections:
-    - expand-horizontally: true
-      category:
-        title: "Suggested for Plasma"
-        subtitle: "Useful apps designed for Plasma."
-        # This is static in pixels, but there seems to be no way to change that yet.
-        banner-height: 250
-        # see https://docs.gtk.org/gtk4/enum.Align.html
-        banner-text-halign: start
-        banner-text-valign: center
-        # see https://docs.gtk.org/gtk4/property.Label.xalign.html
-        banner-text-label-xalign: 0.0
-        appids:
-          - org.kde.okular
-          - org.kde.kate
-          - org.kde.gwenview
-          - org.kde.kdenlive
-          - org.kde.elisa
-          - org.kde.dragonplayer
-          - org.kde.neochat
-          - org.kde.keysmith
-          - org.kde.marknote
-          - im.kaidan.kaidan
-      classes:
-        - main
-  - sections:
-    - expand-horizontally: true
-      category:
-        title: "Misc."
-        subtitle: "Other useful applications."
-        # This is static in pixels, but there seems to be no way to change that yet.
-        banner-height: 250
-        # see https://docs.gtk.org/gtk4/enum.Align.html
-        banner-text-halign: start
-        banner-text-valign: center
-        # see https://docs.gtk.org/gtk4/property.Label.xalign.html
-        banner-text-label-xalign: 0.0
-        appids:
-          - com.calibre_ebook.calibre
-          - org.gimp.GIMP
-          - org.libreoffice.LibreOffice
-          - org.localsend.localsend_app
-          - org.mozilla.Thunderbird
-          - org.zotero.Zotero
-      classes:
-        - main
+  - section:
+    title: "Suggested for Everyone"
+    appids:
+      list:
+        - com.calibre_ebook.calibre
+        - io.github.diegopvlk.Cine
+        - org.gajim.Gajim
+        - org.gimp.GIMP
+        - org.libreoffice.LibreOffice
+        - org.localsend.localsend_app
+        - org.mozilla.Thunderbird
+        - org.zotero.Zotero
+  - section:
+    title: "Suggested for GNOME"
+    appids:
+      list:
+        - org.gnome.Decibels
+        - org.gnome.Papers
+        - org.gnome.Loupe
+        - org.gnome.TextEditor
+        - org.gnome.Showtime
+        - org.gnome.gitlab.somas.Apostrophe
+        - com.belmoussaoui.Authenticator
+        - org.gnome.World.Secrets
+        - org.gnome.World.PikaBackup
+        - net.codelogistics.letters
+        - org.gnome.Fractal
+  - section:
+    title: "Suggested for Plasma"
+    appids:
+      list:
+        - org.kde.okular
+        - org.kde.kate
+        - org.kde.gwenview
+        - org.kde.kdenlive
+        - org.kde.neochat
+        - org.kde.keysmith
+        - org.kde.marknote
