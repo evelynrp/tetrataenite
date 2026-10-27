@@ -4,6 +4,7 @@
     "AudioSandboxEnabled": true,
     "AutofillAddressEnabled": false,
     "AutofillCreditCardEnabled": false,
+    "AutofillGenAiSettings": 2,
     "AutofillPredictionSettings": 2,
     "AutomatedPasswordChangeSettings": 2,
     "BackgroundModeEnabled": false,
@@ -19,7 +20,6 @@
         "cached_images_and_files",
         "autofill"
     ],
-    "ClickToCallEnabled": false,
     "CreateThemesSettings": 2,
     "DefaultBrowserSettingEnabled": false,
     "DefaultSensorsSetting": 2,
@@ -52,9 +52,6 @@
     "MediaRecommendationsEnabled": false,
     "MetricsReportingEnabled": false,
     "NTPCardsVisible": false,
-    "NativeMessagingBlocklist": [
-        "*"
-    ],
     "NetworkPredictionOptions": 2,
     "NetworkServiceSandboxEnabled": true,
     "NewTabPageLocation": "chrome://new-tab-page-third-party",
@@ -76,7 +73,6 @@
     "SafeBrowsingSurveysEnabled": false,
     "SearchContentSharingSettings": 1,
     "SearchSuggestEnabled": false,
-    "SharedClipboardEnabled": false,
     "ShoppingListEnabled": false,
     "ShowFullUrlsInAddressBar": true,
     "SitePerProcess": true,
@@ -86,6 +82,7 @@
     "ThirdPartyAiChatSettings": 1,
     "TranslateEnabled": false,
     "TranslatorAPIAllowed": false,
+    "TryOnYouSettings": 2,
     "UrlKeyedAnonymizedDataCollectionEnabled": false,
     "UserFeedbackAllowed": false,
     "VoiceTypingSettings": 2,
