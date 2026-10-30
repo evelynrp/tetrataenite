@@ -35,7 +35,7 @@ if [[ ! $REPLY =~ ^[Yy]$ ]]; then
 fi
 
 ## Inspect Kernel Cmdline for rd.luks.uuid
-RD_LUKS_UUID="$(xargs -n1 -a /proc/cmdline | grep rd.luks.uuid | cut -d = -f 2)"
+RD_LUKS_UUID="$(xargs -n1 -a /proc/cmdline | grep rd.luks.uuid | cut -d = -f 2 || true)"
 
 # Check to make sure cmdline rd.luks.uuid exists
 if [[ -z ${RD_LUKS_UUID:-} ]]; then
