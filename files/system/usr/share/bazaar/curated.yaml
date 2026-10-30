@@ -9,8 +9,6 @@ rows:
         - org.gimp.GIMP
         - org.libreoffice.LibreOffice
         - org.localsend.localsend_app
-        - org.mozilla.Thunderbird
-        - org.zotero.Zotero
   - section:
     title: "Suggested for GNOME"
     appids:
