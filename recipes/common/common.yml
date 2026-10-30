@@ -83,6 +83,7 @@ modules:
   - type: script
     scripts:
       - set-build-date.sh
+      - chrome-wrapper.sh
 
   - type: initramfs
 

@@ -1,4 +1,8 @@
 #!/bin/bash
+# Replacement for /opt/google/chrome/google-chrome that adds the hardening flags.
+# /usr/bin/google-chrome-stable is symlinked here at build time (see
+# scripts/chrome-wrapper.sh), so the stock .desktop files, the CLI, and
+# Chrome-created app shortcuts (via CHROME_WRAPPER) all launch through this.
 FLAGS_FILE="/usr/share/chrome-flags.conf"
 
 flags=()
@@ -10,4 +14,18 @@ if [[ -f "$FLAGS_FILE" ]]; then
     done < "$FLAGS_FILE"
 fi
 
-exec /usr/bin/google-chrome-stable "${flags[@]}" "$@"
+# Everything below mirrors the upstream launcher script.
+export CHROME_WRAPPER="$(readlink -f "$0")"
+
+xdg_app_dir="${XDG_DATA_HOME:-$HOME/.local/share/applications}"
+mkdir -p "$xdg_app_dir"
+[ -f "$xdg_app_dir/mimeapps.list" ] || touch "$xdg_app_dir/mimeapps.list"
+
+export CHROME_VERSION_EXTRA="stable"
+export GNOME_DISABLE_CRASH_DIALOG=SET_BY_GOOGLE_CHROME
+
+exec < /dev/null
+exec > >(exec cat)
+exec 2> >(exec cat >&2)
+
+exec -a "$0" /opt/google/chrome/chrome "${flags[@]}" "$@"
