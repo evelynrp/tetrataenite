@@ -32,10 +32,10 @@ jobs:
           - recipe-plasma.yml
           - recipe-plasma-nvidia-open.yml
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
       # the build is fully handled by the reusable github action
       - name: Build Custom Image
-        uses: blue-build/github-action@v1.13
+        uses: blue-build/github-action@c295af864f2802fc6aea227507af43d35823db81
         with:
           recipe: ${{ matrix.recipe }}
           cosign_private_key: ${{ secrets.SIGNING_SECRET }}
