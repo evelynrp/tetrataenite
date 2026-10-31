@@ -2,11 +2,7 @@
 ublue-brew-tap:
     #!/usr/bin/bash
     brew tap ublue-os/tap
-
-# Failsafe to enable system flathub in case they don't get baked in
-enable-system-flathub:
-    #!/usr/bin/bash
-    flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+    brew trust ublue-os/tap
 
 # Install MS Core fonts. Might have to run this twice.
 install-ms-core-fonts:
