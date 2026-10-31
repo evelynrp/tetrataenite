@@ -31,6 +31,7 @@ modules:
         - adobe-source-serif-pro-fonts
         - atkinson-hyperlegible-next-fonts
         - bazaar
+        - brew-proxy
         - distrobox
         - fontawesome-fonts-all
         - google-chrome-stable

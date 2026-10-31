@@ -39,7 +39,7 @@ Replace `tetrataenite-gnome` with your chosen image from this list:
 
 ## Design philosophy and decisions
 
-System services handle automatic bootc and flatpak updates. BlueBuild's brew module handles automatic updates of brew and brew-installed applications.
+System services handle automatic bootc and flatpak updates. BlueBuild's brew module handles automatic updates of brew and brew-installed applications. brew-proxy lets brew play nice with multi-user systems.
 
 Firefox was removed completely and replaced with Google Chrome with policies from [RKNF404's Chromium Hardening Guide](https://github.com/RKNF404/chromium-hardening-guide). While I support Mozilla ideologically, there are some concerns about Firefox's security, especially process isolation. Chrome blocks all extensions EXCEPT uBlock Origin Lite, Bitwarden, and KeePassXC-Browser.
 
