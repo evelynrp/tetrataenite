@@ -24,7 +24,6 @@ modules:
         - secureblue/packages
       files:
         - google-chrome.repo
-        - https://repo.secureblue.dev/secureblue.repo
     install:
       install-weak-deps: false
       packages:
@@ -41,7 +40,6 @@ modules:
         - opendyslexic-fonts
         - steam-devices
         - tetrataenite-logos-0.0.2-1.fc43.x86_64.rpm
-        - trivalent
         - neovim
         - vim
 
