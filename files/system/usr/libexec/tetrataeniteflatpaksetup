@@ -10,13 +10,14 @@ set -euo pipefail
 
 in_progress_indicator=~/.cache/tetrataenite-flatpak-setup-in-progress
 if [[ ! -f "${in_progress_indicator}" ]]; then
-    notify-send -a 'tetrataenite' -i 'dialog-information' -u normal 'Provisioning core flatpaks, please wait...'
+    notify-send -a 'tetrataenite' -i 'dialog-information' -u normal 'Provisioning core flatpaks, please wait...' || true
 fi
 touch "${in_progress_indicator}"
 
-flatpak remote-add --if-not-exists --user --subset=verified --title='Flathub Verified' flathub-verified https://dl.flathub.org/repo/flathub.flatpakrepo
+# Named "flathub" because Bazaar only prefers/integrates with a remote of that exact name.
+flatpak remote-add --if-not-exists --user --subset=verified --title='Flathub Verified' flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
-flatpak install --user -y --noninteractive flathub-verified com.github.tchx84.Flatseal
+flatpak install --user -y --noninteractive flathub com.github.tchx84.Flatseal
 
-notify-send -a 'tetrataenite' -i 'dialog-information' -u normal 'Flatpak provisioning completed.'
+notify-send -a 'tetrataenite' -i 'dialog-information' -u normal 'Flatpak provisioning completed.' || true
 rm -f "${in_progress_indicator}"

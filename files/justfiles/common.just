@@ -3,12 +3,21 @@ ublue-brew-tap:
     #!/usr/bin/bash
     brew tap ublue-os/tap
     brew trust ublue-os/tap
+    echo "ublue's brew tap is now enabled"
 
-enable-unverified-flathub:
+# Add the flathub-unverified remote if missing, or remove it if present
+toggle-unverified-flathub:
     #!/usr/bin/bash
-    flatpak remote-add --if-not-exists --user flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+    set -euo pipefail
+    if flatpak remotes --user --columns=name | grep -qx 'flathub-unverified'; then
+        flatpak remote-delete --user flathub-unverified
+        echo "flathub-unverified is now disabled"
+    else
+        flatpak remote-add --user --title='Flathub (Unverified)' flathub-unverified https://dl.flathub.org/repo/flathub.flatpakrepo
+        echo "flathub-unverified is now enabled"
+    fi
 
-# Install MS Core fonts. Might have to run this twice.
+# Install MS Core fonts
 install-ms-core-fonts:
     #!/usr/bin/env bash
     set -euo pipefail
@@ -41,3 +50,4 @@ install-ms-core-fonts:
     cd ~
     rm -rf "$tmpdir"
     fc-cache -f ~/.local/share/fonts/mscorefonts
+    echo "Microsoft fonts are now installed"
