@@ -3,7 +3,6 @@ modules:
   - type: os-release
     properties:
       ID: fedora
-      ID_LIKE: fedora
       NAME: tetrataenite
       PRETTY_NAME: tetrataenite
 
@@ -24,7 +23,6 @@ modules:
         - secureblue/packages
       files:
         - google-chrome.repo
-        - https://repo.secureblue.dev/secureblue.repo
     install:
       install-weak-deps: false
       packages:
@@ -41,7 +39,6 @@ modules:
         - opendyslexic-fonts
         - steam-devices
         - tetrataenite-logos-0.0.2-1.fc43.x86_64.rpm
-        - trivalent
         - neovim
         - vim
 
@@ -49,17 +46,6 @@ modules:
     files:
       - source: system
         destination: /
-
-  - type: default-flatpaks
-    configurations:
-      - notify: false
-        scope: system
-        repo:
-          title: Flathub (system)
-          url: https://dl.flathub.org/repo/flathub.flatpakrepo
-          type: system
-        install:
-          - com.github.tchx84.Flatseal
 
   - type: fonts
     fonts:
@@ -79,6 +65,15 @@ modules:
     install: true
     include:
       - common.just
+
+  - type: systemd
+    system:
+      enabled:
+        - bootc-status.service
+    user:
+      enabled:
+        - tetrataenite-flatpak-setup.service
+        - tetrataenite-update-verification.service
 
   - type: script
     scripts:

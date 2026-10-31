@@ -2,11 +2,8 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-# Disable GNOME user extensions installation & usage
-# Only GNOME system extensions are trusted if installed
-
 [org.gnome.shell]
-favorite-apps = ['google-chrome.desktop', 'org.gnome.Ptyxis.desktop', 'org.gnome.Nautilus.desktop']
+favorite-apps = ['google-chrome.desktop', 'org.gnome.Ptyxis.desktop', 'org.gnome.Nautilus.desktop', 'io.github.kolunmi.Bazaar.desktop']
 enabled-extensions = ['dash-to-dock@micxgx.gmail.com', 'appindicatorsupport@rgcjonas.gmail.com', 'blur-my-shell@aunetx']
 
 [org.gnome.desktop.interface]

@@ -15,4 +15,5 @@ platforms:
 # you can include multiple instances of the same module
 modules:
   - from-file: common/common.yml
+  - from-file: common/non-nvidia.yml
   - from-file: common/kde.yml

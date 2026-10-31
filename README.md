@@ -41,7 +41,7 @@ Replace `tetrataenite-gnome` with your chosen image from this list:
 
 System services handle automatic bootc and flatpak updates. BlueBuild's brew module handles automatic updates of brew and brew-installed applications.
 
-Firefox was removed completely and replaced with Google Chrome with policies from [RKNF404's Chromium Hardening Guide](https://github.com/RKNF404/chromium-hardening-guide). While I support Mozilla ideologically, there are some concerns about Firefox's security, especially process isolation. secureblue's Trivalent is also included for those wanting increased security.
+Firefox was removed completely and replaced with Google Chrome with policies from [RKNF404's Chromium Hardening Guide](https://github.com/RKNF404/chromium-hardening-guide). While I support Mozilla ideologically, there are some concerns about Firefox's security, especially process isolation.
 
 Default app stores such as Gnome Software were removed and replaced with secureblue's Bazaar rpm. This comes with "Verified Only" checked by default, and blocklists all web browsers. I consider this an essential security feature.
 

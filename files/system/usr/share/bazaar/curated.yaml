@@ -1,37 +1,50 @@
+# SPDX-FileCopyrightText: Copyright 2025-2026 The Secureblue Authors
+# SPDX-FileCopyrightText: Copyright 2026 Evelyn Park
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+# Modified by Evelyn Park from the original secureblue file.
+
 rows:
   - section:
-    title: "Suggested for Everyone"
-    appids:
-      list:
-        - com.calibre_ebook.calibre
-        - io.github.diegopvlk.Cine
-        - org.gajim.Gajim
-        - org.gimp.GIMP
-        - org.libreoffice.LibreOffice
-        - org.localsend.localsend_app
+      title: "Suggested for Everyone"
+      subtitle:
+        string: "Apps that offer basic functionality for any desktop"
+      appids:
+        list:
+          - com.calibre_ebook.calibre
+          - io.github.diegopvlk.Cine
+          - org.gajim.Gajim
+          - org.gimp.GIMP
+          - org.libreoffice.LibreOffice
+          - org.localsend.localsend_app
   - section:
-    title: "Suggested for GNOME"
-    appids:
-      list:
-        - org.gnome.Decibels
-        - org.gnome.Papers
-        - org.gnome.Loupe
-        - org.gnome.TextEditor
-        - org.gnome.Showtime
-        - org.gnome.gitlab.somas.Apostrophe
-        - com.belmoussaoui.Authenticator
-        - org.gnome.World.Secrets
-        - org.gnome.World.PikaBackup
-        - net.codelogistics.letters
-        - org.gnome.Fractal
+      title: "Suggested for GNOME"
+      subtitle:
+        string: "Apps designed specifically for GNOME"
+      appids:
+        list:
+          - org.gnome.Decibels
+          - org.gnome.Papers
+          - org.gnome.Loupe
+          - org.gnome.TextEditor
+          - org.gnome.Showtime
+          - org.gnome.gitlab.somas.Apostrophe
+          - com.belmoussaoui.Authenticator
+          - org.gnome.World.Secrets
+          - org.gnome.World.PikaBackup
+          - net.codelogistics.letters
+          - org.gnome.Fractal
   - section:
-    title: "Suggested for Plasma"
-    appids:
-      list:
-        - org.kde.okular
-        - org.kde.kate
-        - org.kde.gwenview
-        - org.kde.kdenlive
-        - org.kde.neochat
-        - org.kde.keysmith
-        - org.kde.marknote
+      title: "Suggested for Plasma"
+      subtitle:
+        string: "Apps designed specifically for Plasma"
+      appids:
+        list:
+          - org.kde.okular
+          - org.kde.kate
+          - org.kde.gwenview
+          - org.kde.kdenlive
+          - org.kde.neochat
+          - org.kde.keysmith
+          - org.kde.marknote
