@@ -6,7 +6,7 @@ ublue-brew-tap:
 
 enable-unverified-flathub:
     #!/usr/bin/bash
-    flatpak remote-add --if-not-exists --user flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+    flatpak remote-add --if-not-exists --user --title='Flathub (Unverified)' flathub-unverified https://dl.flathub.org/repo/flathub.flatpakrepo
 
 # Install MS Core fonts. Might have to run this twice.
 install-ms-core-fonts:
