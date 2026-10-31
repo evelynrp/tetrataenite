@@ -67,8 +67,6 @@ modules:
 
   - type: systemd
     system:
-      enabled:
-        - bootc-status.service
     user:
       enabled:
         - tetrataenite-flatpak-setup.service
