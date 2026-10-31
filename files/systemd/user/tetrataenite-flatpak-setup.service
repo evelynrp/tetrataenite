@@ -9,7 +9,7 @@ ConditionPathExists=!%E/tetrataenite/tetrataenite-flatpak-setup.stamp
 [Service]
 Type=oneshot
 ExecStart=/usr/libexec/tetrataeniteflatpaksetup
-ExecStartPost=/bin/bash -c 'cfg="${XDG_CONFIG_HOME:-"$HOME/.config"}/tetrataenite"; mkdir -p "$cfg" && touch "$cfg/secureblue-tetrataenite-setup.stamp"'
+ExecStartPost=/bin/bash -c 'cfg="${XDG_CONFIG_HOME:-"$HOME/.config"}/tetrataenite"; mkdir -p "$cfg" && touch "$cfg/tetrataenite-flatpak-setup.stamp"'
 Restart=on-failure
 RestartSec=30s
 RestartMaxDelaySec=1800s

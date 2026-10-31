@@ -68,8 +68,8 @@ modules:
   - type: systemd
     user:
       enabled:
-        - tetrataenite-flatpak-setup.service
-        - tetrataenite-update-verification.service
+        - tetrataenite-flatpak-setup.timer
+        - tetrataenite-update-verification.timer
 
   - type: script
     scripts:

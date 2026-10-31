@@ -4,6 +4,8 @@ ConditionUser=!@system
 
 [Timer]
 OnStartupSec=5s
+OnCalendar=hourly
+Persistent=true
 
 [Install]
 WantedBy=timers.target
