@@ -1,0 +1,16 @@
+name: scheduled-testing-build
+on:
+  schedule:
+    - cron: "30 6 * * *"   # 06:30 UTC, offset from main's 06:00 build
+  workflow_dispatch:
+permissions:
+  actions: write
+jobs:
+  dispatch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger build on testing
+        run: gh workflow run build.yml --ref testing
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
