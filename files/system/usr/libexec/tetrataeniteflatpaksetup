@@ -15,7 +15,6 @@ fi
 touch "${in_progress_indicator}"
 
 flatpak remote-add --if-not-exists --user --subset=verified --title='Flathub Verified' flathub-verified https://dl.flathub.org/repo/flathub.flatpakrepo
-ujust harden-flatpak
 
 flatpak install --user -y --noninteractive flathub-verified com.github.tchx84.Flatseal
 
