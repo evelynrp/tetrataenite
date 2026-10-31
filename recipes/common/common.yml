@@ -66,7 +66,6 @@ modules:
       - common.just
 
   - type: systemd
-    system:
     user:
       enabled:
         - tetrataenite-flatpak-setup.service
