@@ -31,6 +31,7 @@ modules:
         - adobe-source-serif-pro-fonts
         - atkinson-hyperlegible-next-fonts
         - bazaar
+        - brew-proxy
         - distrobox
         - fontawesome-fonts-all
         - google-chrome-stable
@@ -66,6 +67,11 @@ modules:
       - common.just
 
   - type: systemd
+    system:
+      enabled:
+        - brew-proxy-setup.service
+        - brew-proxy-fix-ownership.service
+        - tetrataenite-brew-proxy-migration.service
     user:
       enabled:
         - tetrataenite-flatpak-setup.timer

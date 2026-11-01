@@ -1,0 +1,19 @@
+# SPDX-FileCopyrightText: Copyright 2025-2026 The Secureblue Authors
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+# Modified by Evelyn Park from the original secureblue file.
+
+[Unit]
+Description=Migration service to new Homebrew setup with brew-proxy
+Wants=multi-user.target
+After=multi-user.target
+ConditionPathExists=!/var/lib/tetrataenite/tetrataenite-brew-proxy-migration.stamp
+
+[Service]
+Type=oneshot
+StateDirectory=tetrataenite
+ExecStart=/usr/libexec/brew-proxy-migration
+
+[Install]
+WantedBy=multi-user.target
