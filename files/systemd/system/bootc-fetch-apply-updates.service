@@ -1,6 +1,8 @@
 # SPDX-FileCopyrightText: Copyright 2025-2026 The Secureblue Authors
 #
 # SPDX-License-Identifier: Apache-2.0
+#
+# Modified by Evelyn Park from the original secureblue file.
 
 [Unit]
 Description=Apply bootc updates

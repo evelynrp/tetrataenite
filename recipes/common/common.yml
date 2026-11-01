@@ -69,6 +69,8 @@ modules:
   - type: systemd
     system:
       enabled:
+        - brew-proxy-setup.service
+        - brew-proxy-fix-ownership.service
         - tetrataenite-brew-proxy-migration.service
     user:
       enabled:
