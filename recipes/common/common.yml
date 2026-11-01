@@ -67,6 +67,9 @@ modules:
       - common.just
 
   - type: systemd
+    system:
+      enabled:
+        - tetrataenite-brew-proxy-migration.service
     user:
       enabled:
         - tetrataenite-flatpak-setup.timer
