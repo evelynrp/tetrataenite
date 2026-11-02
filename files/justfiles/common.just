@@ -51,3 +51,13 @@ install-ms-core-fonts:
     rm -rf "$tmpdir"
     fc-cache -f ~/.local/share/fonts/mscorefonts
     echo "Microsoft fonts are now installed"
+
+# Enable automatically unlocking the LUKS drive with TPM2
+enable-luks-unlock:
+    #!/usr/bin/bash
+    /usr/libexec/luks-enable-tpm2-autounlock
+
+# Disable automatically unlocking the LUKS drive with TPM2
+disable-luks-unlock:
+    #!/usr/bin/bash
+    /usr/libexec/luks-disable-tpm2-autounlock
