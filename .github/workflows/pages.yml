@@ -42,7 +42,7 @@ jobs:
           go-version-file: site/go.mod
           cache-dependency-path: site/go.sum
       - id: pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
       - name: Build
         run: |
           hugo --gc --minify \
