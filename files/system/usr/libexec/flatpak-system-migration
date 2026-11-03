@@ -1,0 +1,42 @@
+#!/usr/bin/bash
+
+# SPDX-FileCopyrightText: Copyright 2026 Evelyn Park
+#
+# SPDX-License-Identifier: Apache-2.0
+
+# One-time migration away from system-wide flatpaks. tetrataenite only uses a
+# per-user "flathub" remote restricted to the verified subset, so anything in
+# the system installation (e.g. Fedora's "fedora" OCI remote, or a system
+# "flathub" carried over from a previous image) is removed here.
+#
+# The list of system-installed apps is saved first so that each user's
+# tetrataeniteflatpaksetup can reinstall them from Flathub Verified.
+# Uninstalling does not touch app data in ~/.var/app, so reinstalled apps
+# keep their settings.
+
+set -euo pipefail
+
+state_dir=/var/lib/tetrataenite
+refs_list="${state_dir}/flatpak-system-app-refs.list"
+stamp="${state_dir}/tetrataenite-flatpak-system-migration.stamp"
+
+# Merge with any list from an earlier, interrupted run so nothing is lost if
+# we're re-running after the apps were already uninstalled.
+tmp="$(mktemp "${state_dir}/.flatpak-system-app-refs.XXXXXX")"
+{
+    [[ -f "${refs_list}" ]] && cat "${refs_list}"
+    flatpak list --system --app --columns=ref
+} | sed '/^$/d' | sort -u > "${tmp}"
+chmod 0644 "${tmp}"
+mv -f "${tmp}" "${refs_list}"
+
+if [[ -n "$(flatpak list --system --columns=ref)" ]]; then
+    flatpak uninstall --system --all --noninteractive -y
+fi
+
+while IFS= read -r remote; do
+    [[ -n "${remote}" ]] || continue
+    flatpak remote-delete --system --force "${remote}"
+done < <(flatpak remotes --system --columns=name)
+
+touch "${stamp}"

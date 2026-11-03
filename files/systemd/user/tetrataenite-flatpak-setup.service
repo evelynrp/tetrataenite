@@ -4,12 +4,13 @@ Wants=network-online.target
 After=network-online.target
 ConditionUser=!@system
 ConditionPathIsDirectory=/var/home/%u
-ConditionPathExists=!%E/tetrataenite/tetrataenite-flatpak-setup.stamp
+# Run if either step is still pending; the script writes both stamps itself.
+ConditionPathExists=|!%E/tetrataenite/tetrataenite-flatpak-setup.stamp
+ConditionPathExists=|!%E/tetrataenite/tetrataenite-flatpak-migration.stamp
 
 [Service]
 Type=oneshot
 ExecStart=/usr/libexec/tetrataeniteflatpaksetup
-ExecStartPost=/bin/bash -c 'cfg="${XDG_CONFIG_HOME:-"$HOME/.config"}/tetrataenite"; mkdir -p "$cfg" && touch "$cfg/tetrataenite-flatpak-setup.stamp"'
 Restart=on-failure
 RestartSec=30s
 RestartMaxDelaySec=1800s
