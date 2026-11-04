@@ -6,10 +6,6 @@ modules:
       install-weak-deps: false
       packages:
         - adw-gtk3-theme
-        - gnome-shell-extension-appindicator
-        - gnome-shell-extension-blur-my-shell
-        - gnome-shell-extension-caffeine
-        - gnome-shell-extension-dash-to-dock
         - gnome-tweaks
         - gvfs-mtp
     remove:
@@ -20,6 +16,13 @@ modules:
         - gnome-software
         - gnome-tour
         - totem-video-thumbnailer
+
+  - type: gnome-extensions
+    install:
+      - Blur my Shell
+      - AppIndicator and KStatusNotifierItem Support
+      - 307 # Dash-to-Dock
+      - Caffeine
         
   - type: gschema-overrides
     include:
