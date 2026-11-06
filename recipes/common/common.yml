@@ -72,6 +72,7 @@ modules:
         - brew-proxy-setup.service
         - brew-proxy-fix-ownership.service
         - tetrataenite-brew-proxy-migration.service
+        - tetrataenite-flatpak-system-migration.service
     user:
       enabled:
         - tetrataenite-flatpak-setup.timer

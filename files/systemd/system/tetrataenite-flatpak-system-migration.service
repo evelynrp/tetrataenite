@@ -1,0 +1,20 @@
+# SPDX-FileCopyrightText: Copyright 2026 Evelyn Park
+#
+# SPDX-License-Identifier: Apache-2.0
+
+[Unit]
+Description=Remove system-wide flatpaks and remotes in favor of per-user Flathub Verified
+# Fedora's service adds the "fedora" remotes on first boot; run after it so we
+# remove them, and finish before anyone logs in so the user-side reinstall sees
+# the complete list.
+After=flatpak-add-fedora-repos.service local-fs.target
+Before=systemd-user-sessions.service
+ConditionPathExists=!/var/lib/tetrataenite/tetrataenite-flatpak-system-migration.stamp
+
+[Service]
+Type=oneshot
+StateDirectory=tetrataenite
+ExecStart=/usr/libexec/flatpak-system-migration
+
+[Install]
+WantedBy=multi-user.target

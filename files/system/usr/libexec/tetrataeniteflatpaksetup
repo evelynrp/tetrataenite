@@ -8,16 +8,161 @@
 
 set -euo pipefail
 
+cfg_dir="${XDG_CONFIG_HOME:-"$HOME/.config"}/tetrataenite"
+state_dir="${XDG_STATE_HOME:-"$HOME/.local/state"}/tetrataenite"
+setup_stamp="${cfg_dir}/tetrataenite-flatpak-setup.stamp"
+migration_stamp="${cfg_dir}/tetrataenite-flatpak-migration.stamp"
+skipped_list="${state_dir}/flatpak-migration-skipped.list"
+# Written by /usr/libexec/flatpak-system-migration before it removes system flatpaks.
+system_refs_list=/var/lib/tetrataenite/flatpak-system-app-refs.list
+
+flathub_url=https://dl.flathub.org/repo/
+# Remotes allowed to remain in the user installation. flathub-unverified is
+# only ever added by the user via `ujust toggle-unverified-flathub`.
+kept_remotes=(flathub flathub-unverified)
+
+notify() {
+    notify-send -a 'tetrataenite' -i 'dialog-information' -u normal "$@" || true
+}
+
+is_kept_remote() {
+    local r
+    for r in "${kept_remotes[@]}"; do
+        [[ "$1" == "${r}" ]] && return 0
+    done
+    return 1
+}
+
+# Make sure "flathub" exists, points at Flathub, is enabled and is restricted
+# to the verified subset. A pre-existing unfiltered "flathub" (e.g. from the
+# image we were rebased from) would otherwise survive --if-not-exists.
+# Named "flathub" because Bazaar only prefers/integrates with a remote of that exact name.
+ensure_flathub_remote() {
+    local name url subset options
+    while IFS=$'\t' read -r name url subset options; do
+        [[ "${name}" == flathub ]] || continue
+        if [[ "${url}" != "${flathub_url}" ]]; then
+            # Wrong server, so its GPG key is wrong too: re-add from scratch.
+            # Installed refs keep "flathub" as their origin and carry over.
+            flatpak remote-delete --user --force flathub
+            break
+        fi
+        if [[ "${subset}" != verified || "${options}" == *disabled* ]]; then
+            flatpak remote-modify --user --enable --subset=verified flathub
+        fi
+        return 0
+    done < <(flatpak remotes --user --columns=name,url,subset,options)
+
+    flatpak remote-add --if-not-exists --user --subset=verified --title='Flathub Verified' \
+        flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+}
+
+# Move everything that isn't from a kept remote onto Flathub Verified, drop
+# what isn't available there, and delete every other user remote.
+migrate() {
+    local -A available=() user_origin=() pending=()
+    local -a skipped=()
+    local full ref origin
+
+    # One fetch of the verified subset. If this fails we're most likely offline:
+    # exit non-zero so systemd retries later, before anything is changed.
+    while IFS= read -r full; do
+        [[ -n "${full}" ]] && available["${full#*/}"]="${full}"
+    done < <(flatpak remote-ls --user --columns=ref flathub)
+    if (( ${#available[@]} == 0 )); then
+        echo "Flathub Verified returned no refs; not migrating." >&2
+        return 1
+    fi
+
+    while IFS=$'\t' read -r ref origin; do
+        [[ -n "${ref}" ]] && user_origin["${ref}"]="${origin}"
+    done < <(flatpak list --user --app --columns=ref,origin)
+
+    # Apps that used to be installed system-wide, unless already present
+    # in the user installation from a kept remote.
+    if [[ -r "${system_refs_list}" ]]; then
+        while IFS= read -r ref; do
+            [[ -n "${ref}" ]] || continue
+            if [[ -n "${user_origin[${ref}]:-}" ]] && is_kept_remote "${user_origin[${ref}]}"; then
+                continue
+            fi
+            pending["${ref}"]=1
+        done < "${system_refs_list}"
+    fi
+
+    # User apps from foreign remotes, plus apps on "flathub" that aren't in
+    # the verified subset (left over from an unfiltered flathub remote).
+    for ref in "${!user_origin[@]}"; do
+        origin="${user_origin[${ref}]}"
+        if ! is_kept_remote "${origin}" || [[ "${origin}" == flathub && -z "${available[${ref}]:-}" ]]; then
+            pending["${ref}"]=1
+        fi
+    done
+
+    for ref in "${!pending[@]}"; do
+        if [[ -n "${available[${ref}]:-}" ]]; then
+            # --reinstall switches the origin if it's already installed for this user.
+            if ! flatpak install --user --reinstall --noninteractive -y flathub "${available[${ref}]}"; then
+                # Distinguish "this app is broken" from "we lost the network".
+                flatpak remote-ls --user --columns=ref flathub > /dev/null || return 1
+                skipped+=("${ref} (install failed)")
+            fi
+        else
+            skipped+=("${ref} (not on Flathub Verified)")
+            # Its remote is about to go away, so it would never get updates.
+            # App data in ~/.var/app is kept.
+            if [[ -n "${user_origin[${ref}]:-}" ]]; then
+                flatpak uninstall --user --noninteractive -y "${ref}"
+            fi
+        fi
+    done
+
+    flatpak uninstall --user --unused --noninteractive -y
+
+    # Runtimes/extensions still needed from foreign remotes: move them over too.
+    while IFS=$'\t' read -r ref origin; do
+        [[ -n "${ref}" ]] || continue
+        is_kept_remote "${origin}" && continue
+        [[ "${ref}" =~ \.(Locale|Debug|Sources)/ ]] && continue
+        if [[ -n "${available[${ref}]:-}" ]] \
+            && flatpak install --user --reinstall --noninteractive -y flathub "${available[${ref}]}"; then
+            continue
+        fi
+        skipped+=("${ref} (runtime, left installed without updates)")
+    done < <(flatpak list --user --runtime --columns=ref,origin)
+
+    local remote
+    while IFS= read -r remote; do
+        [[ -n "${remote}" ]] || continue
+        is_kept_remote "${remote}" || flatpak remote-delete --user --force "${remote}"
+    done < <(flatpak remotes --user --columns=name)
+
+    if (( ${#skipped[@]} > 0 )); then
+        mkdir -p "${state_dir}"
+        printf '%s\n' "${skipped[@]}" | sort > "${skipped_list}"
+        notify "Some flatpaks were not reinstalled" \
+            "${#skipped[@]} app(s) aren't available from Flathub Verified. See ${skipped_list}"
+    fi
+}
+
 in_progress_indicator=~/.cache/tetrataenite-flatpak-setup-in-progress
 if [[ ! -f "${in_progress_indicator}" ]]; then
-    notify-send -a 'tetrataenite' -i 'dialog-information' -u normal 'Provisioning core flatpaks, please wait...' || true
+    notify 'Provisioning core flatpaks, please wait...'
 fi
 touch "${in_progress_indicator}"
 
-# Named "flathub" because Bazaar only prefers/integrates with a remote of that exact name.
-flatpak remote-add --if-not-exists --user --subset=verified --title='Flathub Verified' flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+mkdir -p "${cfg_dir}"
+ensure_flathub_remote
 
-flatpak install --user -y --noninteractive flathub com.github.tchx84.Flatseal
+if [[ ! -f "${migration_stamp}" ]]; then
+    migrate
+    touch "${migration_stamp}"
+fi
 
-notify-send -a 'tetrataenite' -i 'dialog-information' -u normal 'Flatpak provisioning completed.' || true
+if [[ ! -f "${setup_stamp}" ]]; then
+    flatpak install --user -y --noninteractive flathub com.github.tchx84.Flatseal
+    touch "${setup_stamp}"
+fi
+
+notify 'Flatpak provisioning completed.'
 rm -f "${in_progress_indicator}"
