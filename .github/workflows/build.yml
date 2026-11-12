@@ -36,7 +36,7 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
       # the build is fully handled by the reusable github action
       - name: Build Custom Image
-        uses: blue-build/github-action@c295af864f2802fc6aea227507af43d35823db81
+        uses: blue-build/github-action@fb86c457fd3d0e13d5e9c1875c6305cf28b09234
         with:
           recipe: ${{ matrix.recipe }}
           cosign_private_key: ${{ secrets.SIGNING_SECRET }}
@@ -45,4 +45,8 @@ jobs:
           skip_checkout: true   # important since we've already checked out above
           # enabled by default, disable if your image is small and you want faster builds
           maximize_build_space: true
-          chunkah: true
+          # chunkah: true
+          # Dependabot runs can't read Actions secrets, so the signing key is empty.
+          # Treat these as build-only checks: don't sign, don't push.
+          push: ${{ github.actor != 'dependabot[bot]' }}
+          build_opts: ${{ github.actor == 'dependabot[bot]' && '--no-sign' || ' ' }}
