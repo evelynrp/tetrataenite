@@ -45,7 +45,7 @@ jobs:
           skip_checkout: true   # important since we've already checked out above
           # enabled by default, disable if your image is small and you want faster builds
           maximize_build_space: true
-          chunkah: true
+          # chunkah: true
           # Dependabot runs can't read Actions secrets, so the signing key is empty.
           # Treat these as build-only checks: don't sign, don't push.
           push: ${{ github.actor != 'dependabot[bot]' }}
